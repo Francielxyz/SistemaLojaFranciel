@@ -1,11 +1,11 @@
 package com.lojafran.Loja_Franciel.controller;
 
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,7 +26,6 @@ public class FuncionarioController {
 		ModelAndView mv = new ModelAndView("administrativo/funcionarios/cadastro");
 		mv.addObject("funcionario",funcionario);
 		return mv;
-		
 	}
 	
 	@GetMapping("/administrativo/funcionarios/listar")
@@ -37,7 +36,7 @@ public class FuncionarioController {
 	}
 	
 	@PostMapping("administrativo/funcionarios/salvar")
-	public ModelAndView salvar(@Valid Funcionario funcionario, BindingResult result) {
+	public ModelAndView salvar(@Validated Funcionario funcionario, BindingResult result) {
 		if(result.hasErrors()) {
 	
 			return cadastrar(funcionario);
