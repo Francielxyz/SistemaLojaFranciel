@@ -24,7 +24,7 @@ public class Funcionario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	private String name;
+	private String nome;
 	private Double salarioBruto;
 	@Temporal(TemporalType.DATE)
 	private Date dataEntrada;
@@ -47,12 +47,12 @@ public class Funcionario implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public Double getSalarioBruto() {
