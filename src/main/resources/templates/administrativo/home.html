@@ -1,70 +1,21 @@
-<!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{administrativo/fragments/layout}">
 <head>
-	<title>Loja Virtual com Spring MVC Spring Boot</title>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<meta name="description" content="" />
-	<meta name="author" content="" />
-	<link rel="icon" href="/image/favicon.png" />
-
-	<!-- Bootstrap core CSS -->
-	<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
-	
-	<!-- Custom styles for this template -->
-	<link href="/css/style.css" rel="stylesheet" />
+<title>Pagina principal da loja virtual</title>
 </head>
 <body>
-	<header>
-		<nav class="navbar navbar-inverse navbar navbar-dark bg-dark fixed-top">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="btn btn-dark navbar-toggle pull-left">
-						<i class="oi oi-menu"></i>
-					</button>
-					<a class="navbar-brand " href="#">Painel Administrativo da Loja Virtual</a>
-				</div>
-			</div>
-		</nav>
-	</header>
-	
-	<div class="layout-main">	
-	
-		<aside>
-			<nav class="sidebar sidebar-open">
-				<ul class="nav nav-pills">
-					<li class="nav-item"><a class="nav-link " href="/"> <i
-							class="oi oi-home"></i> <span>Home</span>
-					</a></li>
-				</ul>
+	<section class="layout-content" layout:fragment="corpo">
 
-				<ul class="nav nav-pills">
-					<li class="nav-item"><span class="nav-link active">Usuários</span></li>
-					<li class="nav-item"><a class="nav-link" 
-						href="/administrativo/funcionarios/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar </span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link" 
-						href="/administrativo/funcionarios/listar"> <i class="oi oi-spreadsheet"></i> <span>Listar </span>
-					</a></li>
-				</ul>
-			</nav>
-		</aside>
-			
-	<section class="layout-content">
-	
 		<nav class="navbar navbar-expand-md bg-light">
 			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<i class="oi oi-caret-right"></i>
-						<span>Home</span>
-					</li>
+					<li class="nav-item active"><i class="oi oi-caret-right"></i>
+						<span>Home</span></li>
 				</ul>
 			</div>
 		</nav>
-		
+
 		<div class="container">
 			<div id="list-home" class="row">
 				<div class="col-4">
@@ -93,11 +44,12 @@
 						<div class="tab-pane fade show active" id="spring-boot"
 							role="tabpanel" aria-labelledby="list-spring-boot-list">
 							<a href="https://projects.spring.io/spring-boot/">Spring Boot</a>
-							makes it easy to create stand-alone, production-grade Spring
-							based Applications that you can "just run". We take an
-							opinionated view of the Spring platform and third-party libraries
-							so you can get started with minimum fuss. Most Spring Boot
-							applications need very little Spring configuration.
+							torna mais facil criar aplicativos autonomos baseados em Spring
+							de nivel de producao que voce pode "simplesmente executar". Temos
+							uma visao opinativa da plataforma Spring e das bibliotecas de
+							terceiros para que voce possa comecar com o minimo de confusao. A
+							maioria dos aplicativos do Spring Boot precisa de muito pouca
+							configuracao do Spring.
 						</div>
 						<div class="tab-pane fade" id="sts" role="tabpanel"
 							aria-labelledby="list-sts-list">
@@ -115,7 +67,7 @@
 							environments. With modules for Spring Framework, a host of
 							integrations with your favourite tools, and the ability to plug
 							in your own functionality, Thymeleaf is ideal for modern-day
-							HTML5 JVM web development — although there is much more it can
+							HTML5 JVM web development � although there is much more it can
 							do.
 						</div>
 						<div class="tab-pane fade" id="webjars" role="tabpanel"
@@ -149,35 +101,8 @@
 				</div>
 			</div>
 		</div>
-		
-	</section>		
-	
-	</div>
-		<footer class="layout-footer">
-		<div class="container">
-			<span class="footer-copy">&copy; 2018 MBallem. Todos os direitos reservados.</span>
-		</div>
-	</footer> 
 
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="/webjars/jquery/jquery.min.js"></script>
-	<script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
-	<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-	    
-		$(function() {
-			$('[data-toggle="popover"]').popover();
-		});
-		
-		$(document).ready(function(){
-		    $(".navbar-toggle").click(function(){
-		        $(".sidebar").toggleClass("sidebar-open");
-		    })
-		});
+	</section>
 
-	</script>
 </body>
 </html>

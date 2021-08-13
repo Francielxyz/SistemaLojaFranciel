@@ -1,97 +1,20 @@
-<!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{administrativo/fragments/layout}">
 <head>
-<title>Spring-Boot BÃ¡sico</title>
-<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-
-<!-- Bootstrap core CSS -->
-<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
-	rel="stylesheet" />
-
-<!-- Custom styles for this template -->
-<link href="/css/style.css" rel="stylesheet" />
+<title>Página Listar Funcionários da Loja Virtual</title>
 </head>
 <body>
-	<header>
-		<nav
-			class="navbar navbar-inverse navbar navbar-dark bg-dark fixed-top">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="btn btn-dark navbar-toggle pull-left">
-						<i class="oi oi-menu"></i>
-					</button>
-					<a class="navbar-brand navbar-toggle pull-left" href="#">Curso
-						Spring Boot</a>
-				</div>
-			</div>
-		</nav>
-	</header>
-
-	<div class="layout-main">
-
-		<aside>
-			<nav class="sidebar  sidebar-open">
-				<ul class="nav nav-pills">
-					<li class="nav-item"><a class="nav-link " href="/"> <i
-							class="oi oi-home"></i> <span>Home</span>
-					</a></li>
-				</ul>
-
-				<ul class="nav nav-pills">
-					<li class="nav-item"><span class="nav-link active">Departamentos</span></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/departamentos/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/departamentos/listar"> <i class="oi oi-spreadsheet"></i>
-							<span>Listar </span>
-					</a></li>
-				</ul>
-
-				<ul class="nav nav-pills">
-					<li class="nav-item"><span class="nav-link active">Cargos</span></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/cargos/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar
-						</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link" href="/cargos/listar">
-							<i class="oi oi-spreadsheet"></i> <span>Listar </span>
-					</a></li>
-				</ul>
-
-				<ul class="nav nav-pills">
-					<li class="nav-item"><span class="nav-link active">FuncionÃ¡rios</span></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/funcionarios/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar
-						</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/funcionarios/listar"> <i class="oi oi-spreadsheet"></i>
-							<span>Listar </span>
-					</a></li>
-				</ul>
-			</nav>
-		</aside>
-
-		<section class="layout-content">
+	<section class="layout-content" layout:fragment="corpo">
 			<nav class="navbar navbar-expand-md bg-light">
 				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item active"><i class="oi oi-caret-right"></i>
-							<span>Lista de FuncionÃ¡rios</span></li>
+							<span>Lista de Funcionários</span></li>
 					</ul>
 					<a class="btn btn-primary btn-md" href="/funcionarios/cadastrar"
 						role="button"> <span class="oi oi-plus" title="Cadastro"
-						aria-hidden="true"></span> <span>Cadastrar FuncionÃ¡rios</span>
+						aria-hidden="true"></span> <span>Cadastrar Funcionários</span>
 					</a>
 				</div>
 			</nav>
@@ -136,7 +59,7 @@
 									<select class="form-control mr-sm-2" name="cargo"
 										aria-label="Search">
 										<option value="">Cargo</option>
-										<option value="1">Auxiliar ContÃ¡bil</option>
+										<option value="1">Auxiliar Contábil</option>
 										<option value="2">Auxiliar Administrativo</option>
 										<option value="3">Contador</option>
 										<option value="4">Adminitrador</option>
@@ -182,8 +105,8 @@
 								<th>#</th>
 								<th>Nome</th>
 								<th>Cargo</th>
-								<th>SalÃ¡rio Bruto</th>
-								<th>AÃ§Ã£o</th>
+								<th>Salário Bruto</th>
+								<th>Ação</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -214,34 +137,5 @@
 				</div>
 			</div>
 		</section>
-
-	</div>
-
-	<footer class="layout-footer">
-		<div class="container">
-			<span class="footer-copy">&copy; 2018 MBallem. Todos os
-				direitos reservados.</span>
-		</div>
-	</footer>
-
-	<!-- Bootstrap core JavaScript
-================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="/webjars/jquery/jquery.min.js"></script>
-	<script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-		$(function() {
-			$('[data-toggle="popover"]').popover();
-		});
-
-		$(document).ready(function() {
-			$(".navbar-toggle").click(function() {
-				$(".sidebar").toggleClass("sidebar-open");
-			})
-		});
-	</script>
 </body>
 </html>
