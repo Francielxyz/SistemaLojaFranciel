@@ -12,53 +12,53 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.lojafran.Loja_Franciel.model.Marca;
-import com.lojafran.Loja_Franciel.repository.MarcaRepository;
+import com.lojafran.Loja_Franciel.model.Estado;
+import com.lojafran.Loja_Franciel.repository.EstadoRepository;
 
 @Controller
-@RequestMapping("/administrativo/marca")
-public class MarcaController {
-	
+@RequestMapping("/administrativo/estados")
+public class EstadoController {
+
 	@Autowired
-	private MarcaRepository marcaRepository;
-	
+	private EstadoRepository estadoRepository;
+
 	@GetMapping("/cadastrar")
-	public ModelAndView cadastrar(Marca marca) {
-		ModelAndView mv = new ModelAndView("administrativo/marca/cadastro");
-		mv.addObject("marca", marca);
+	public ModelAndView cadastrar(Estado estado) {
+		ModelAndView mv =  new ModelAndView("administrativo/estados/cadastro");
+		mv.addObject("estado", estado);
 		return mv;
 	}
-	
+
 	@GetMapping("/listar")
 	public ModelAndView listar() {
-		ModelAndView mv = new ModelAndView("/administrativo/marca/lista");
-		mv.addObject("listaMarca", marcaRepository.findAll());
+		ModelAndView mv=new ModelAndView("administrativo/estados/lista");
+		mv.addObject("listaEstados", estadoRepository.findAll());
 		return mv;
 	}
-	
+
 	@GetMapping("/editar/{id}")
 	public ModelAndView editar(@PathVariable("id") Long id) {
-		Optional<Marca> marca = marcaRepository.findById(id);
-		return cadastrar(marca.get());
+		Optional<Estado> estado = estadoRepository.findById(id);
+		return cadastrar(estado.get());
 	}
-	
+
 	@GetMapping("/remover/{id}")
 	public ModelAndView remover(@PathVariable("id") Long id) {
-		Optional<Marca> marca = marcaRepository.findById(id);
-		marcaRepository.delete(marca.get());
+		Optional<Estado> estado = estadoRepository.findById(id);
+		estadoRepository.delete(estado.get());
 		return listar();
 	}
+
 	
 	@PostMapping("/salvar")
-	public ModelAndView salvar(@Validated Marca marca, BindingResult result) {
+	public ModelAndView salvar(@Validated Estado estado, BindingResult result) {
+		
 		if(result.hasErrors()) {
-	
-			return cadastrar(marca);
+			return cadastrar(estado);
 		}
+		estadoRepository.saveAndFlush(estado);
 		
-		marcaRepository.saveAndFlush(marca);
-		
-		return cadastrar(new Marca());
+		return cadastrar(new Estado());
 	}
 
 }
