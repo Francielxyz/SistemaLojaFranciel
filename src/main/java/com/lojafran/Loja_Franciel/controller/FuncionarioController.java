@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lojafran.Loja_Franciel.model.Funcionario;
+import com.lojafran.Loja_Franciel.repository.CidadeRepository;
 import com.lojafran.Loja_Franciel.repository.FuncionarioRepository;
 
 
@@ -22,12 +23,15 @@ public class FuncionarioController {
 
 	@Autowired
 	private FuncionarioRepository funcionarioRepositorio;
-	//melhorar forma do caminho (rota) relacionando ao controler
+	
+	@Autowired
+	private CidadeRepository cidadeRepository;
 	
 	@GetMapping("/cadastrar")
 	public ModelAndView cadastrar(Funcionario funcionario) {
 		ModelAndView mv = new ModelAndView("administrativo/funcionarios/cadastro");
 		mv.addObject("funcionario",funcionario);
+		mv.addObject("listaCidades",cidadeRepository.findAll());
 		return mv;
 	}
 	
