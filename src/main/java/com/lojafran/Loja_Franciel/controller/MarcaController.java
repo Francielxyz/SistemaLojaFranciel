@@ -16,7 +16,7 @@ import com.lojafran.Loja_Franciel.model.Marca;
 import com.lojafran.Loja_Franciel.repository.MarcaRepository;
 
 @Controller
-@RequestMapping("/administrativo/marca")
+@RequestMapping("/administrativo/marcas")
 public class MarcaController {
 	
 	@Autowired
@@ -24,14 +24,14 @@ public class MarcaController {
 	
 	@GetMapping("/cadastrar")
 	public ModelAndView cadastrar(Marca marca) {
-		ModelAndView mv = new ModelAndView("administrativo/marca/cadastro");
+		ModelAndView mv = new ModelAndView("administrativo/marcas/cadastro");
 		mv.addObject("marca", marca);
 		return mv;
 	}
 	
 	@GetMapping("/listar")
 	public ModelAndView listar() {
-		ModelAndView mv = new ModelAndView("/administrativo/marca/lista");
+		ModelAndView mv = new ModelAndView("/administrativo/marcas/lista");
 		mv.addObject("listaMarca", marcaRepository.findAll());
 		return mv;
 	}

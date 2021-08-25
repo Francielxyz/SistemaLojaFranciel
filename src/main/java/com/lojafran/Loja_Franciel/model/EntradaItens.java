@@ -35,5 +35,4 @@ public class EntradaItens implements Serializable {
 	private Double valorProduto = 0.0;
 	private Double valorVenda = 0.0;
 	
-	
 }

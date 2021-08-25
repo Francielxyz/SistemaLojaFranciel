@@ -6,22 +6,16 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.lojafran.Loja_Franciel.model.Cidade;
 import com.lojafran.Loja_Franciel.model.EntradaItens;
 import com.lojafran.Loja_Franciel.model.EntradaProduto;
 import com.lojafran.Loja_Franciel.model.Produto;
-import com.lojafran.Loja_Franciel.repository.CidadeRepository;
 import com.lojafran.Loja_Franciel.repository.EntradaItensRepository;
 import com.lojafran.Loja_Franciel.repository.EntradaProdutoRepository;
-import com.lojafran.Loja_Franciel.repository.EstadoRepository;
 import com.lojafran.Loja_Franciel.repository.FuncionarioRepository;
 import com.lojafran.Loja_Franciel.repository.ProdutoRepository;
 
