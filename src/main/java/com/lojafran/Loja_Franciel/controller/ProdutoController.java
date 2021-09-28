@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lojafran.Loja_Franciel.model.Produto;
+import com.lojafran.Loja_Franciel.repository.MarcaRepository;
 import com.lojafran.Loja_Franciel.repository.ProdutoRepository;
 
 @Controller
@@ -21,11 +22,15 @@ public class ProdutoController {
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
-
+	
+	@Autowired
+	private MarcaRepository marcaRepository;
+	
 	@GetMapping("/cadastrar")
 	public ModelAndView cadastrar(Produto produto) {
 		ModelAndView mv =  new ModelAndView("administrativo/produtos/cadastro");
 		mv.addObject("produto", produto);
+		mv.addObject("listaMarcas", marcaRepository.findAll());
 		return mv;
 	}
 

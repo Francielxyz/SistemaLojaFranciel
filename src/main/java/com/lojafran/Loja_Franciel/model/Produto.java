@@ -33,8 +33,6 @@ public class Produto implements Serializable {
 	@ManyToOne
 	private Marca marca;
 	
-//	private String marca;
-	
 	private Double quantidadeEstoque = 0.0;
 
 }
