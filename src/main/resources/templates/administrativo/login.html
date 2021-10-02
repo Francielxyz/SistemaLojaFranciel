@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-<></>" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Página de login</title>
+    </style>
+</head>
+
+<body>
+<div class="login-form">
+    <form th:action="@{/login}" method="post">
+        <h2 class="text-center">Login do Painel Administrativo</h2>
+
+        <input name="username" placeholder="Usuário"/>
+        <input type="password" name="password" placeholder="Senha"/>
+
+        <button>Entrar</button>
+    </form>
+</div>
+</body>
+</html>

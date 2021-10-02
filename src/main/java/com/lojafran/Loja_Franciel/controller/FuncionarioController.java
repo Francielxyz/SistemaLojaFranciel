@@ -3,6 +3,7 @@ package com.lojafran.Loja_Franciel.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.lojafran.Loja_Franciel.model.Funcionario;
+import com.lojafran.Loja_Franciel.entity.Funcionario;
 import com.lojafran.Loja_Franciel.repository.CidadeRepository;
 import com.lojafran.Loja_Franciel.repository.FuncionarioRepository;
 
@@ -60,7 +61,10 @@ public class FuncionarioController {
 		if(result.hasErrors()) {
 			return cadastrar(funcionario);
 		}
-		
+
+		// criptar senha
+		funcionario.setSenha(new BCryptPasswordEncoder().encode(funcionario.getSenha()));
+
 		funcionarioRepositorio.saveAndFlush(funcionario);
 		return cadastrar(new Funcionario());
 	}

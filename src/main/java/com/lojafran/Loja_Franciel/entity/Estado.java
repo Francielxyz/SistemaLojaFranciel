@@ -1,7 +1,6 @@
-package com.lojafran.Loja_Franciel.model;
+package com.lojafran.Loja_Franciel.entity;
 
 import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,26 +11,19 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "marca")
-public class Marca implements Serializable{
-	
+@Table(name = "estado")
+public class Estado implements Serializable {
+
+	public Estado() {
+		super();
+	}
+
 	private static final long serialVersionUID = 1L;
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+
 	private String nome;
-	private String descricao;
+	private String sigla;
 
-	public Marca() {
-		
-	}
-
-	public Marca(Long id, String nome, String descricao) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.descricao = descricao;
-	}
-	
 }

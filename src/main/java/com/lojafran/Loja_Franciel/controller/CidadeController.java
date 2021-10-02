@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.lojafran.Loja_Franciel.model.Cidade;
+import com.lojafran.Loja_Franciel.entity.Cidade;
 import com.lojafran.Loja_Franciel.repository.CidadeRepository;
 import com.lojafran.Loja_Franciel.repository.EstadoRepository;
 

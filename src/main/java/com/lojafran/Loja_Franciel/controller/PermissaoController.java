@@ -1,6 +1,6 @@
 package com.lojafran.Loja_Franciel.controller;
 
-import com.lojafran.Loja_Franciel.model.Permissao;
+import com.lojafran.Loja_Franciel.entity.Permissao;
 import com.lojafran.Loja_Franciel.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

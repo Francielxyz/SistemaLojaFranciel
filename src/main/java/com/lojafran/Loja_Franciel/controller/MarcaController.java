@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.lojafran.Loja_Franciel.model.Marca;
+import com.lojafran.Loja_Franciel.entity.Marca;
 import com.lojafran.Loja_Franciel.repository.MarcaRepository;
 
 @Controller

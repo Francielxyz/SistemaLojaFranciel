@@ -1,4 +1,4 @@
-package com.lojafran.Loja_Franciel.model;
+package com.lojafran.Loja_Franciel.entity;
 
 import java.io.Serializable;
 import java.util.Date;

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.lojafran.Loja_Franciel.model.Produto;
+import com.lojafran.Loja_Franciel.entity.Produto;
 import com.lojafran.Loja_Franciel.repository.MarcaRepository;
 import com.lojafran.Loja_Franciel.repository.ProdutoRepository;
 

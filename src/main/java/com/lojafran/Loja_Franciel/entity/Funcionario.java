@@ -1,4 +1,4 @@
-package com.lojafran.Loja_Franciel.model;
+package com.lojafran.Loja_Franciel.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -55,5 +55,9 @@ public class Funcionario implements Serializable {
 	private String uf;
 	
 	private String cep;
+
+	private String email;
+
+	private String senha;
 
 }

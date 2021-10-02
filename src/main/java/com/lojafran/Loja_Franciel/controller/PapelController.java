@@ -1,8 +1,6 @@
 package com.lojafran.Loja_Franciel.controller;
 
-import com.lojafran.Loja_Franciel.model.Estado;
-import com.lojafran.Loja_Franciel.model.Papel;
-import com.lojafran.Loja_Franciel.repository.EstadoRepository;
+import com.lojafran.Loja_Franciel.entity.Papel;
 import com.lojafran.Loja_Franciel.repository.PapelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

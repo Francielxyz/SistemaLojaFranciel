@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.lojafran.Loja_Franciel.model.EntradaItens;
-import com.lojafran.Loja_Franciel.model.EntradaProduto;
-import com.lojafran.Loja_Franciel.model.Produto;
+import com.lojafran.Loja_Franciel.entity.EntradaItens;
+import com.lojafran.Loja_Franciel.entity.EntradaProduto;
+import com.lojafran.Loja_Franciel.entity.Produto;
 import com.lojafran.Loja_Franciel.repository.EntradaItensRepository;
 import com.lojafran.Loja_Franciel.repository.EntradaProdutoRepository;
 import com.lojafran.Loja_Franciel.repository.FuncionarioRepository;
