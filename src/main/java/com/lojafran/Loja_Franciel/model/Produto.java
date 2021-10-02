@@ -35,4 +35,6 @@ public class Produto implements Serializable {
 	
 	private Double quantidadeEstoque = 0.0;
 
+	private String nomeImagem;
+
 }

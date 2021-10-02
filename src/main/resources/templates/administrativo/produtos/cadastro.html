@@ -2,7 +2,7 @@
 <html xmlns:layout="http://www.w3.org/1999/xhtml"
 	layout:decorate="~{administrativo/fragments/layout}">
 <head>
-<title>Página Cadastro de Produtos da loja virtual</title>
+<title>Pï¿½gina Cadastro de Produtos da loja virtual</title>
 </head>
 <body>
 	<section class="layout-content" layout:fragment="corpo">
@@ -27,8 +27,8 @@
 				enctype="multipart/form-data" th:object="${produto}" method="POST">
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="nome">Descrição do Produto</label> <input type="text"
-							class="form-control" id="nome" placeholder="Descrição"
+						<label for="nome">Descriï¿½ï¿½o do Produto</label> <input type="text"
+							class="form-control" id="nome" placeholder="Descriï¿½ï¿½o"
 							autofocus="autofocus" th:field="*{descricao}" value="" />
 						<div class="invalid-feedback"></div>
 					</div>
@@ -45,12 +45,11 @@
 					<div class="form-group col-md-6">
 						<label for="nome">Marca</label> <select th:field="*{marca}"
 							class="form-control">
-							<option th:each="marc: ${listaMarscas}" th:value="${marc.id}"
+							<option th:each="marc: ${listaMarcas}" th:value="${marc.id}"
 								th:text="${marc.nome}"></option>
 						</select>
 						<div class="invalid-feedback"></div>
 					</div>
-
 
 					<div class="form-group col-md-6">
 						<label for="salario">Valor de Venda</label> <input type="text"
@@ -61,6 +60,9 @@
 
 				</div>
 
+				<div class="form-group col-md-12">
+					<input type="file" name="file">
+				</div>
 
 				<input type="hidden" id="id" th:field="*{id}" value="" />
 				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
