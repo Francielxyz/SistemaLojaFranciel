@@ -1,5 +1,6 @@
 package com.lojafran.Loja_Franciel.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -59,6 +60,20 @@ public class ProdutoController {
         return listar();
     }
 
+    @ResponseBody
+    @GetMapping("/mostrarImagem/{imagem}")
+    public byte[] retornarImagem(@PathVariable("imagem") String imagem) {
+        if (imagem != null || imagem.trim().length() > 0) {
+            File imagemArquivo = new File(constantsImagens.CAMINHO_PASTA_IMAGENS + imagem);
+            try {
+                return Files.readAllBytes(imagemArquivo.toPath());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
 
     @PostMapping("/salvar")
     public ModelAndView salvar(@Validated Produto produto, BindingResult result, @RequestParam("file") MultipartFile arquivo) {
@@ -66,25 +81,25 @@ public class ProdutoController {
         if (result.hasErrors()) {
             return cadastrar(produto);
         }
-
         produtoRepository.saveAndFlush(produto);
-
         try {
-            if(!arquivo.isEmpty()){
+
+            if (!arquivo.isEmpty()) {
                 byte[] bytes = arquivo.getBytes();
 
                 // Caminho onde a imagem vai ser salva
-                Path caminho = Paths.get(constantsImagens.IMAGEM+String.valueOf(produto.getId())+arquivo.getOriginalFilename());
+                Path caminho = Paths.get(constantsImagens.CAMINHO_PASTA_IMAGENS + String.valueOf(produto.getId()) + arquivo.getOriginalFilename());
                 Files.write(caminho, bytes);
 
                 // Salva no banco de dados a imagem com tal nome
-                produto.setNomeImagem(String.valueOf(produto.getId())+arquivo.getOriginalFilename());
+                produto.setNomeImagem(String.valueOf(produto.getId()) + arquivo.getOriginalFilename());
+
+                produtoRepository.saveAndFlush(produto);
             }
 
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
 
 
         return cadastrar(new Produto());
