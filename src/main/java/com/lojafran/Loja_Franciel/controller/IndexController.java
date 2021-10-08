@@ -6,11 +6,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-public class LoginController {
+public class IndexController {
 
-    @GetMapping("/login")
-    public ModelAndView login() {
-        ModelAndView mv = new ModelAndView("/administrativo/login");
+    @GetMapping("/")
+    public ModelAndView index() {
+        ModelAndView mv = new ModelAndView("/administrativo/index");
 
         return mv;
     }
