@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.Optional;
 
 import com.lojafran.Loja_Franciel.constants.ConstantsImagens;
+import com.lojafran.Loja_Franciel.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -32,11 +33,15 @@ public class ProdutoController {
     @Autowired
     private MarcaRepository marcaRepository;
 
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
     @GetMapping("/cadastrar")
     public ModelAndView cadastrar(Produto produto) {
         ModelAndView mv = new ModelAndView("administrativo/produtos/cadastro");
         mv.addObject("produto", produto);
         mv.addObject("listaMarcas", marcaRepository.findAll());
+        mv.addObject("listaCategorias", categoriaRepository.findAll());
         return mv;
     }
 
