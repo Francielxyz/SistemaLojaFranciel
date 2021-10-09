@@ -35,7 +35,7 @@
 					</div>
 					<div class="form-group col-md-6">
 						<label for="salario">Salário Bruto</label> <input type="text"
-							class="form-control" id="salario" data-mask="###.###,00"
+							class="form-control" id="salario" data-mask="#.###,00"
 							th:field="*{salarioBruto}" value="" />
 						<div class="invalid-feedback"></div>
 					</div>
@@ -60,8 +60,7 @@
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="cargo">Cargo</label> <select id="cargo"
-							class="form-control" name="cargo">
+						<label for="cargo">Cargo</label> <select id="cargo" class="form-control" name="cargo" th:field="*{cargo}">
 							<option value="">Selecione...</option>
 							<option value="1">Auxiliar Contábil</option>
 							<option value="2">Auxiliar Administrativo</option>
@@ -112,28 +111,27 @@
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="bairro">Bairro</label> <input type="text"
-							class="form-control" id="bairro" name="bairro" value="" />
+						<label for="bairro">Bairro</label>
+						<input type="text" class="form-control" id="bairro" name="bairro" th:field="*{bairro}" value="" />
 						<div class="invalid-feedback"></div>
 					</div>
 					<div class="form-group col-md-6">
-						<label for="cep">Cep</label> <input type="text"
-							class="form-control" id="cep" data-mask="00000-000" name="cep"
-							value="" />
+						<label for="cep">Cep</label>
+						<input type="text" class="form-control" id="cep" data-mask="00000-000" name="cep" th:field="*{cep}" value="" />
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>
 
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="email">Email</label> <input type="text"
-																  class="form-control" id="email" name="email" value="" />
+						<label for="email">Email</label>
+						<input type="text" class="form-control" id="email" name="email" autofocus="autofocus" th:field="*{email}" value="" />
 						<div class="invalid-feedback"></div>
 					</div>
+
 					<div class="form-group col-md-6">
-						<label for="senha">Senha</label> <input type="text"
-															class="form-control" id="senha" name="senha"
-															value="" />
+						<label for="senha">Senha</label>
+						<input type="text" class="form-control" id="senha" name="senha" th:field="*{senha}" value="" />
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>
