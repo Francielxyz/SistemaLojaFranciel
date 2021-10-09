@@ -1,63 +1,61 @@
 package com.lojafran.Loja_Franciel.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import lombok.Data;
+import java.util.Objects;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "funcionario")
 public class Funcionario implements Serializable {
 
-	public Funcionario() {
-		super();
-	}
+    private static final long serialVersionUID = 1L;
 
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	private String nome;
-	
-	private Double salarioBruto;
-	
+    private String nome;
+
+    private Double salarioBruto;
+
+    private String logradouro;
+
+    private String numero;
+
+    private String complemento;
+
+    private String bairro;
+
+    private String uf;
+
+    private String cep;
+
+    private String email;
+
+    private String senha;
+
+	private String cargo;
+
 	@Temporal(TemporalType.DATE)
 	private Date dataEntrada;
+
 	@Temporal(TemporalType.DATE)
-	
 	private Date dataSaida;
-	
-	private String cargo;
-	
+
 	@ManyToOne
 	private Cidade cidade;
-	
-	private String logradouro;
-	
-	private String numero;
-	
-	private String complemento;
-	
-	private String bairro;
-	
-	private String uf;
-	
-	private String cep;
 
-	private String email;
-
-	private String senha;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
 }
