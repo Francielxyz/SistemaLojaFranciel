@@ -27,17 +27,19 @@
 				enctype="multipart/form-data" th:object="${produto}" method="POST">
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="nome">Descri��o do Produto</label> <input type="text"
-							class="form-control" id="nome" placeholder="Descri��o"
-							autofocus="autofocus" th:field="*{descricao}" value="" />
+						<label for="nome">Descri��o do Produto</label>
+						<input type="text" class="form-control" id="nome" placeholder="Descri��o" autofocus="autofocus" th:field="*{descricao}" value="" />
 						<div class="invalid-feedback"></div>
 					</div>
+
 					<div class="form-group col-md-6">
 						<label for="nome">Categoria</label>
 						<select th:field="*{categoria}" class="form-control">
-							<option th:each="marc: ${listaCategorias}" th:value="${cat.id}" th:text="${cart.nome}"></option>
+							<option th:each="categoria: ${listaCategorias}" th:value="${categoria.id}" th:text="${categoria.nome}"></option>
 						</select>
-					<div class="invalid-feedback"></div>
+						<div class="invalid-feedback"></div>
+					</div>
+
 				</div>
 
 				<div class="form-row">
@@ -47,13 +49,12 @@
 							<select th:field="*{marca}" class="form-control">
 								<option th:each="marc: ${listaMarcas}" th:value="${marc.id}" th:text="${marc.nome}"></option>
 							</select>
-						<div class="invalid-feedback"></div>
-					</div>
+							<div class="invalid-feedback"></div>
+						</div>
 
 					<div class="form-group col-md-6">
-						<label for="salario">Valor de Venda</label> <input type="text"
-							class="form-control" id="valorVenda" placeholder="Valor de Venda"
-							data-mask-reverse="true" th:field="*{valorVenda}" value="" />
+						<label for="salario">Valor de Venda</label>
+						<input type="text" class="form-control" id="valorVenda" placeholder="Valor de Venda" data-mask="#.###,00" th:field="*{valorVenda}" value="" />
 						<div class="invalid-feedback"></div>
 					</div>
 
