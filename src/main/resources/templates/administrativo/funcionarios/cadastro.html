@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
-<html xmlns:layout="http://www.w3.org/1999/xhtml"
-	layout:decorate="~{administrativo/fragments/layout}">
+<html xmlns:th="http://www.thymeleaf.org/%22%3E">
+
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{administrativo/fragments/layout}">
 <head>
 <title>Página Cadastro de Funcionário da loja virtual</title>
 
@@ -24,8 +25,7 @@
 		</div>
 
 		<div class="container" id="cadastro">
-			<form action="/administrativo/funcionarios/salvar"
-				th:object="${funcionario}" method="POST">
+			<form action="/administrativo/funcionarios/salvar" th:object="${funcionario}" method="POST">
 				<div class="form-row">
 
 					<div class="form-group col-md-4">
@@ -34,17 +34,21 @@
 						<div class="invalid-feedback"></div>
 					</div>
 
-					<div class="form-group col-md-4">
-						<label for="cpf">CPF</label>
-						<input type="text" class="form-control cpf-mask" placeholder="Apenas números" data-mask="000.000.000-00" id="cpf" name="cpf" th:field="*{cpf}" maxlength="14" value="" />
-						<span th:text="'Cpf digitado é ' + ${cpfValido}"></span>
-						<div class="invalid-feedback"></div>
-					</div>
+<!--					<form onsubmit="isValidCPF()">-->
+<!--						CPF: <input id="cpf" type="text"><input type="submit">-->
+<!--					</form>-->
+
+						<div class="form-group col-md-4">
+							<label for="cpf">CPF</label>
+							<input type="number" class="form-control cpf-mask"  data-mask="000.000.000-00" id="cpf" name="cpf" th:field="*{cpf}" maxlength="14" value="" />
+<!--							<span th:text="'Cpf digitado é ' + ${cpfValido}"></span>-->
+							<div class="invalid-feedback"></div>
+						</div>
+
 
 					<div class="form-group col-md-3">
-						<label for="salario">Salário Bruto</label> <input type="text"
-							class="form-control" id="salario" data-mask="#.###,00"
-							th:field="*{salarioBruto}" value="" />
+						<label for="salario">Salário Bruto</label>
+						<input type="number" class="form-control" id="salario" data-mask="#.###,00" th:field="*{salarioBruto}" value="" />
 						<div class="invalid-feedback"></div>
 					</div>
 
@@ -148,5 +152,8 @@
 			</form>
 		</div>
 	</section>
+
+	<script src="validateCPF.js"></script>
+	<script src="valid.js"></script>
 </body>
 </html>
