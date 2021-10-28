@@ -5,10 +5,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import com.lojafran.Loja_Franciel.constants.ConstantsImagens;
+import com.lojafran.Loja_Franciel.entity.Imagem;
 import com.lojafran.Loja_Franciel.repository.CategoriaRepository;
+import com.lojafran.Loja_Franciel.repository.ImagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -35,6 +39,9 @@ public class ProdutoController {
 
     @Autowired
     private CategoriaRepository categoriaRepository;
+
+    @Autowired
+    private ImagemRepository imagemRepository;
 
     @GetMapping("/cadastrar")
     public ModelAndView cadastrar(Produto produto) {
@@ -81,7 +88,7 @@ public class ProdutoController {
 
 
     @PostMapping("/salvar")
-    public ModelAndView salvar(@Validated Produto produto, BindingResult result, @RequestParam("file") MultipartFile arquivo) {
+    public ModelAndView salvar(@Validated Produto produto, BindingResult result, @RequestParam("file") List<MultipartFile> arquivo) {
 
         if (result.hasErrors()) {
             return cadastrar(produto);
@@ -90,17 +97,28 @@ public class ProdutoController {
         try {
 
             if (!arquivo.isEmpty()) {
-                byte[] bytes = arquivo.getBytes();
 
-                // Caminho onde a imagem vai ser salva
-                Path caminho = Paths.get(constantsImagens.CAMINHO_PASTA_IMAGENS + String.valueOf(produto.getId()) + arquivo.getOriginalFilename());
-                Files.write(caminho, bytes);
+                List<Imagem> imagemList = new ArrayList<>();
 
-                // Salva no banco de dados a imagem com tal nome
-                produto.setNomeImagem(String.valueOf(produto.getId()) + arquivo.getOriginalFilename());
+                for(MultipartFile file : arquivo) {
+                    Imagem imagem = new Imagem();
+
+                    byte[] bytes = file.getBytes();
+
+                    // Caminho onde a imagem vai ser salva
+                    Path caminho = Paths.get(constantsImagens.CAMINHO_PASTA_IMAGENS + String.valueOf(produto.getId()) + file.getOriginalFilename());
+                    Files.write(caminho, bytes);
+
+                    Imagem imagemComValores  = setValoresImagens(imagem, produto.getId(), file);
+
+                    imagemList.add(imagemRepository.saveAndFlush(imagemComValores));
+                }
+
+                produto.setNomeImagem(imagemList);
 
                 produtoRepository.saveAndFlush(produto);
             }
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -109,5 +127,14 @@ public class ProdutoController {
 
         return cadastrar(new Produto());
     }
+
+    public Imagem setValoresImagens(Imagem imagem, Long idProduto, MultipartFile file){
+
+        imagem.setNome(String.valueOf(idProduto + file.getOriginalFilename()));
+        imagem.setIdProduto(idProduto);
+
+        return imagem;
+    }
+
 
 }
