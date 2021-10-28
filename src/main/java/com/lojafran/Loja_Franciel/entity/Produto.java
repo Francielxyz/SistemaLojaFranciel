@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Data
@@ -21,15 +22,14 @@ public class Produto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
-
     private String descricao;
 
     private Double valorVenda;
 
     private Double quantidadeEstoque = 0.0;
 
-    private String nomeImagem;
+    @OneToMany
+    private List<Imagem> nomeImagem;
 
     @ManyToOne
     private Marca marca;
