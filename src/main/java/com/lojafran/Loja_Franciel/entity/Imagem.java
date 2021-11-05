@@ -23,7 +23,8 @@ public class Imagem implements Serializable {
 
 	private String nome;
 
-	private Long idProduto;
+	@ManyToOne
+	private Produto produto;
 
 	@Override
 	public int hashCode() {

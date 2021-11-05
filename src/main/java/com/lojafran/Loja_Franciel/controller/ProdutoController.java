@@ -133,7 +133,7 @@ public class ProdutoController {
         if (result.hasErrors()) {
             return cadastrar(produto);
         }
-        produtoRepository.saveAndFlush(produto);
+        produto = produtoRepository.saveAndFlush(produto);
         try {
 
             if (!arquivo.isEmpty()) {
@@ -149,14 +149,10 @@ public class ProdutoController {
                     Path caminho = Paths.get(constantsImagens.CAMINHO_PASTA_IMAGENS + String.valueOf(produto.getId()) + file.getOriginalFilename());
                     Files.write(caminho, bytes);
 
-                    Imagem imagemComValores  = setValoresImagens(imagem, produto.getId(), file);
+                    Imagem imagemComValores  = setValoresImagens(imagem, produto, file);
 
                     imagemList.add(imagemRepository.saveAndFlush(imagemComValores));
                 }
-
-                produto.setNomeImagem(imagemList);
-
-                produtoRepository.saveAndFlush(produto);
             }
 
 
@@ -168,10 +164,10 @@ public class ProdutoController {
         return cadastrar(new Produto());
     }
 
-    public Imagem setValoresImagens(Imagem imagem, Long idProduto, MultipartFile file){
+    public Imagem setValoresImagens(Imagem imagem, Produto produto, MultipartFile file){
 
-        imagem.setNome(String.valueOf(idProduto + file.getOriginalFilename()));
-        imagem.setIdProduto(idProduto);
+        imagem.setNome(String.valueOf(produto.getId() + file.getOriginalFilename()));
+        imagem.setProduto(produto);
 
         return imagem;
     }

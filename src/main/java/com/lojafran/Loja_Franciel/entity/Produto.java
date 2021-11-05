@@ -28,8 +28,8 @@ public class Produto implements Serializable {
 
     private Double quantidadeEstoque = 0.0;
 
-    @OneToMany
-    private List<Imagem> nomeImagem;
+//    @OneToMany
+//    private List<Imagem> nomeImagem;
 
     @ManyToOne
     private Marca marca;
