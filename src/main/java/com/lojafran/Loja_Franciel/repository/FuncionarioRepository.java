@@ -6,4 +6,8 @@ import com.lojafran.Loja_Franciel.entity.Funcionario;
 
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> {
 
+    Funcionario findByEmail(String email);
+
+    Funcionario findByEmailAAndCodigoRecuperacao(String emai, String codigoRecuperacao);
+
 }

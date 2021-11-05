@@ -46,6 +46,11 @@ public class Funcionario implements Serializable {
 
 	private String cargo;
 
+    private String codigoRecuperacao;
+
+    @Temporal(TemporalType.DATE)
+    private Date dataCodigo;
+
 	@Temporal(TemporalType.DATE)
 	private Date dataEntrada;
 
