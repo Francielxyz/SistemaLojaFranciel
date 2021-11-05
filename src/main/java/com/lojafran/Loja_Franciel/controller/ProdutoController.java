@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 import com.lojafran.Loja_Franciel.constants.ConstantsImagens;
+import com.lojafran.Loja_Franciel.entity.Categoria;
 import com.lojafran.Loja_Franciel.entity.Imagem;
+import com.lojafran.Loja_Franciel.entity.Marca;
 import com.lojafran.Loja_Franciel.repository.CategoriaRepository;
 import com.lojafran.Loja_Franciel.repository.ImagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +58,44 @@ public class ProdutoController {
     public ModelAndView listar() {
         ModelAndView mv = new ModelAndView("administrativo/produtos/lista");
         mv.addObject("listaProdutos", produtoRepository.findAll());
+        return mv;
+    }
+
+    @GetMapping("/listar/descricao")
+    public ModelAndView listarPorDescricao(String descricao) {
+        ModelAndView mv = new ModelAndView("administrativo/produtos/lista");
+        mv.addObject("listaProdutos", produtoRepository.findByDescricao(descricao));
+        return mv;
+    }
+
+    @GetMapping("/listar/categoria") //TODO - TENTA IMPLEMENTA NUM SERVICE
+    public ModelAndView listarPorCategoria(String nome) {
+
+        List<Categoria> listCategoria =  categoriaRepository.findByNome(nome);
+        List<Produto> listProduto = new ArrayList<>();
+
+        for(Categoria categoria : listCategoria){
+            listProduto = produtoRepository.findByCategoria(categoria);
+
+        }
+
+        ModelAndView mv = new ModelAndView("administrativo/produtos/lista");
+        mv.addObject("listaProdutos",  listProduto);
+
+        return mv;
+    }
+
+    @GetMapping("/listar/marca") //TODO - TENTA IMPLEMENTA NUM SERVICE
+    public ModelAndView listarPorMarca(String nome) {
+        List<Produto> listProduto = new ArrayList<>();
+        List<Marca> listMarca = marcaRepository.findByNome(nome);
+
+        for(Marca marca : listMarca){
+            listProduto = produtoRepository.findByMarca(marca);
+        }
+
+        ModelAndView mv = new ModelAndView("administrativo/produtos/lista");
+        mv.addObject("listaProdutos", listProduto);
         return mv;
     }
 
