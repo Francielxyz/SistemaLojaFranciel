@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Página de login</title>
+    <title>Página Alterar Senha </title>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script
@@ -46,28 +46,29 @@
 <body>
 <div class="login-form">
 
-    <form th:action="@{/login}" method="post">
-        <h2 class="text-center">Login do Painel Administrativo</h2>
+    <form th:action="@{/alterarSenha}" method="post">
+        <h2 class="text-center">Alterar Senha</h2>
 
         <div class="form-group">
-            <input type="text" class="form-control" name="username" placeholder="E-mail" required="required">
+            <input type="text" class="form-control" name="email" placeholder="E-mail" required="required">
         </div>
 
         <div class="form-group">
-            <input type="password" name="password" class="form-control" placeholder="Senha" required="required">
+            <input type="text" class="form-control" name="codigoRecuperacao" placeholder="Cód. Recuperação" required="required">
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-success btn-block">Entrar</button>
+            <input type="text" class="form-control" name="senha" placeholder="Senha" required="required">
         </div>
 
-
-        <a class="btn btn-primary btn-md" href="/solicitarCodigo" role="button">
-            <span class="oi oi-spreadsheet" title="Recuperar" aria-hidden="true"></span>
-            <span>Solicitar Cod. P/ Alterar Senha</span>
-        </a>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success btn-block">Alterar Senha</button>
+        </div>
 
     </form>
+
+    <!--    <h1><span th:text="${mensagem}"></span></h1>-->
+
 
 </div>
 </body>

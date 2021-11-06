@@ -12,19 +12,18 @@ public class EnviarEmailService{
     private JavaMailSender mailSender;
 
     public String enviarEmail(String destinatario, String assunto, String mensagemCorpo) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("projetoTeste45@gmail.com");
+        message.setTo(destinatario);
+        message.setSubject(assunto);
+        message.setText(mensagemCorpo);
         try {
-            SimpleMailMessage mensagem = new SimpleMailMessage();
-            mensagem.setFrom("projetoLojaFranciel@gmail.com");//remetente
-            mensagem.setSubject(assunto);//assunto
-            mensagem.setTo(destinatario);//destinatário
-            mensagem.setText(mensagemCorpo); // mensagem
-            mailSender.send(mensagem); //enviar
-            return "E-mail enviado com sucesso!";
+            mailSender.send(message);
+            return "Email enviado com sucesso!";
         } catch (Exception e) {
             e.printStackTrace();
-            return "Não foi possível enviar o email!";
+            return "Erro ao enviar email.";
         }
-
     }
 
 }

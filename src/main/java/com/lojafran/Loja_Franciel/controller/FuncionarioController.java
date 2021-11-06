@@ -16,8 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
 import java.util.Optional;
-import java.util.Random;
-
 
 @Controller
 @RequestMapping("/administrativo/funcionarios")
@@ -61,42 +59,17 @@ public class FuncionarioController {
     }
 
     @PostMapping("/salvar")
-    public ModelAndView salvar(@Validated Funcionario funcionario, BindingResult result, Model model) {
+    public ModelAndView salvar(@Validated Funcionario funcionario, BindingResult result) {
 
-//        if (ValidarCpf.isCPF(funcionario.getCpf())) {
-            if (result.hasErrors()) {
-                return cadastrar(funcionario);
-            }
-
-            // criptar senha
-            funcionario.setSenha(new BCryptPasswordEncoder().encode(funcionario.getSenha()));
-
-            funcionarioRepositorio.saveAndFlush(funcionario);
-            return cadastrar(new Funcionario());
-//        }
-
-//        model.addAttribute("cpfValido", "inválido");
-
-    }
-
-
-    @PostMapping("solicitarCodigo")
-    public String solicitarCodigo(@RequestParam(name = "email") String email, Model model){
-        Random gerador = new Random(); // Gerar números aleatórios
-
-        Funcionario funcionario = funcionarioRepositorio.findByEmail(email);
-        if(funcionario != null){
-
-            funcionario.setCodigoRecuperacao("" + funcionario.getId() + gerador.nextInt(1000)); //gerando número aleatório
-            funcionario.setDataCodigo(new Date()); //setando nova data
-            funcionario.setSenha("");
-            funcionarioRepositorio.saveAndFlush(funcionario);
-            enviarEmailService.enviarEmail(email, "Solicitação para Recuperação de Senha", "O código de recuperação é o seguinte: " + funcionario.getCodigoRecuperacao());
-            model.addAttribute("mensagem", "O código foi encaminhado para o seu e-mail!");
-            return "alterarSenha";
+        if (result.hasErrors()) {
+            return cadastrar(funcionario);
         }
-        model.addAttribute("mensagem", "Email não encontrado");
-        return "A";
+
+        funcionario.setSenha(new BCryptPasswordEncoder().encode(funcionario.getSenha()));// criptar senha
+
+        funcionarioRepositorio.saveAndFlush(funcionario);
+        return cadastrar(new Funcionario());
+
     }
 
 }
