@@ -48,7 +48,7 @@ public class Funcionario implements Serializable {
 
     private String codigoRecuperacao;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataCodigo;
 
 	@Temporal(TemporalType.DATE)

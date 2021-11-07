@@ -17,40 +17,13 @@ import java.util.Date;
 import java.util.Random;
 
 @Controller
-public class EnviarEmailsController {
+public class AlterarSenhaController {
 
     @Autowired
     FuncionarioRepository funcionarioRepository;
 
     @Autowired
     private EnviarEmailService enviarEmailService;
-
-    @GetMapping("/solicitarCodigo")
-    public ModelAndView solicitarCodigo() {
-        ModelAndView mv = new ModelAndView("/administrativo/recuperarSenha/solicitarCodigo");
-        return mv;
-    }
-
-    @PostMapping("/solicitarCodigo")
-    public ModelAndView solicitarCodigo(@RequestParam(name = "email") String email, Model model) {
-        Random gerador = new Random(); // Gerar números aleatórios
-
-        Funcionario funcionario = funcionarioRepository.findByEmail(email);
-        if (funcionario != null) {
-            funcionario.setCodigoRecuperacao("" + funcionario.getId() + gerador.nextInt(10000)); //gerando número aleatório
-            funcionario.setDataCodigo(new Date()); //setando nova data
-            funcionario.setSenha("");
-            funcionarioRepository.saveAndFlush(funcionario);
-            enviarEmailService.enviarEmail(email, "Solicitação para Recuperação de Senha", "O código de recuperação é o seguinte: " + funcionario.getCodigoRecuperacao());
-            model.addAttribute("mensagem", "O código foi encaminhado para o seu e-mail!");
-
-            ModelAndView mv = new ModelAndView("/administrativo/recuperarSenha/alterarSenha");
-            return mv;
-        }
-        model.addAttribute("mensagem", "Email não encontrado");
-        ModelAndView mv = new ModelAndView("/administrativo/recuperarSenha/solicitarCodigo");
-        return mv;
-    }
 
 
     @GetMapping("/alterarSenha")
@@ -64,10 +37,11 @@ public class EnviarEmailsController {
         Funcionario funcionario = funcionarioRepository.findByEmailAndCodigoRecuperacao(email, codigoRecuperacao);
 
         if(funcionario != null){
+
             Date diff = new Date(new Date().getTime() - funcionario.getDataCodigo().getTime());
 
-            // todo confirma essa validação
-            if(diff.getTime() / 1000 > 900){
+            // TODO CORRIGIR VALIDAÇÃO DA HORA QUE NÃO ESTA CORRETA
+            if (diff.getTime() / 1000 < 90000){ //900000 milisegundos = 900 segundos que é = 15 minutos
                 funcionario.setCodigoRecuperacao(null);
                 funcionario.setDataCodigo(null);
 
@@ -75,16 +49,16 @@ public class EnviarEmailsController {
                 funcionarioRepository.saveAndFlush(funcionario);
 
                 model.addAttribute("mensagem", "Senha alterada com sucesso");
-                return "mensagem";
+                return "/administrativo/recuperarSenha/mensagem";
             } else{
                 model.addAttribute("mensagem", "Código expirado, solicite novamente!");
-                return "mensagem";
+                return "/administrativo/recuperarSenha/mensagem";
             }
 
         }
 
         model.addAttribute("mensagem", "Email e/ou código não encontrado");
-        return "mensagem";
+        return "/administrativo/recuperarSenha/mensagem";
     }
 
 }
