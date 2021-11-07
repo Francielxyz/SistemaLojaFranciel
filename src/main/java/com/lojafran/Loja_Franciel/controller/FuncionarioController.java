@@ -8,13 +8,11 @@ import com.lojafran.Loja_Franciel.util.ValidarCpf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -65,9 +63,13 @@ public class FuncionarioController {
             return cadastrar(funcionario);
         }
 
-        funcionario.setSenha(new BCryptPasswordEncoder().encode(funcionario.getSenha()));// criptar senha
+        funcionarioRepositorio.saveAndFlush(funcionario);
+
+        funcionario.setSenha(new BCryptPasswordEncoder().encode(funcionario.getId().toString()));// Criando senha padrão através do id do funcionário criado
+        enviarEmailService.enviarEmail(funcionario.getEmail(), "Dados de Acesso para Seu Perfil", "A senha criada para seu perfil é a seguinte " + funcionario.getId() + ". Recomenda-se que seja alterada esta senha por segurança");
 
         funcionarioRepositorio.saveAndFlush(funcionario);
+
         return cadastrar(new Funcionario());
 
     }
