@@ -83,17 +83,16 @@ body {
 }
 
 /*
- * nav-pills home
+ * cor dos menus laterais
  */
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
 	color: #fff;
-	background-color: #1e94d2;
+	background-color: #0aad6f;
 }
 
 /*
  * toogle do navbar do menu
- */ 
-
+ */
 .navbar-toggle {
     display: inline-block;
     margin-left: 10px;
