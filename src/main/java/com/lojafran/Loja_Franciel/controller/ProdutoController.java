@@ -164,6 +164,26 @@ public class ProdutoController {
         return cadastrar(new Produto());
     }
 
+    @GetMapping("/salvarLotes")
+    public ModelAndView salvarLotes() {
+        List<Produto> listProdut = new ArrayList<>();
+
+        for(int x = 0; x < 50000; x++){
+            Produto produto = new Produto();
+            produto.setDescricao("Computador muito bom");
+            produto.setValorVenda(10.0);
+            produto.setQuantidadeEstoque(5.0);
+            produto.setMarca(null);
+            produto.setCategoria(null);
+
+            listProdut.add(produto);
+        }
+        produtoRepository.saveAll(listProdut);
+
+        return cadastrar(new Produto());
+    }
+
+
     public Imagem setValoresImagens(Imagem imagem, Produto produto, MultipartFile file){
 
         imagem.setNome(String.valueOf(produto.getId() + file.getOriginalFilename()));
