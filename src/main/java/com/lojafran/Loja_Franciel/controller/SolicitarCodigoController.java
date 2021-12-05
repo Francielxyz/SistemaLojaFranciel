@@ -43,11 +43,9 @@ public class SolicitarCodigoController {
             enviarEmailService.enviarEmail(email, "Solicitação para Recuperação de Senha", "O código de recuperação é o seguinte: " + funcionario.getCodigoRecuperacao());
             model.addAttribute("mensagem", "O código foi encaminhado para o seu e-mail!");
 
-//            ModelAndView mv = new ModelAndView("/administrativo/recuperarSenha/alterarSenha");
             return "/administrativo/recuperarSenha/mensagem";
         }
         model.addAttribute("mensagem", "Email não encontrado");
-//        ModelAndView mv = new ModelAndView("/administrativo/recuperarSenha/solicitarCodigo");
         return "/administrativo/recuperarSenha/mensagem";
     }
 

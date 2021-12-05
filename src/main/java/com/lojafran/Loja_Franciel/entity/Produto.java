@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,8 +29,8 @@ public class Produto implements Serializable {
 
     private Double quantidadeEstoque = 0.0;
 
-//    @OneToMany
-//    private List<Imagem> nomeImagem;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "produto")
+    private List<Imagem> imagens = new ArrayList<>();
 
     @ManyToOne
     private Marca marca;
