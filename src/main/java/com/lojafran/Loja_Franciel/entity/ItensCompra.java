@@ -27,9 +27,11 @@ public class ItensCompra implements Serializable {
 	@ManyToOne
 	private Compra compra;
 
-	private Integer quantidade;
+	private Integer quantidade = 0;
 
 	private Double valorUnitario;
+
+	private Double valorTotal;
 
 	@Override
 	public int hashCode() {
