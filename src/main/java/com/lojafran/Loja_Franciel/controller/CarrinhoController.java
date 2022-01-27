@@ -28,6 +28,25 @@ public class CarrinhoController {
         return mv;
     }
 
+    @GetMapping("/alterarQuantidade/{id}/{acao}")
+    public ModelAndView alterarQuantidade(@PathVariable Long id, @PathVariable Integer acao) {
+        ModelAndView mv = new ModelAndView("/cliente/carrinho");
+
+        for (ItensCompra it : listItensCompras) {
+            if (it.getProduto().getId().equals(id)) {
+                if (acao.equals(1)) {
+                    it.setQuantidade(it.getQuantidade() + 1);
+                } else if (acao == 0) {
+                    it.setQuantidade(it.getQuantidade() - 1);
+                }
+                break;
+            }
+        }
+
+        mv.addObject("listaItens", listItensCompras);
+        return mv;
+    }
+
     @GetMapping("/adicionarCarrinho/{id}")
     public ModelAndView adicionarCarrinho(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("/cliente/carrinho");
