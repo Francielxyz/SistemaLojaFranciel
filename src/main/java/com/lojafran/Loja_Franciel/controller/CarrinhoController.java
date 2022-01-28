@@ -29,7 +29,7 @@ public class CarrinhoController {
     }
 
     @GetMapping("/alterarQuantidade/{id}/{acao}")
-    public ModelAndView alterarQuantidade(@PathVariable Long id, @PathVariable Integer acao) {
+    public String alterarQuantidade(@PathVariable Long id, @PathVariable Integer acao) {
         ModelAndView mv = new ModelAndView("/cliente/carrinho");
 
         for (ItensCompra it : listItensCompras) {
@@ -43,8 +43,7 @@ public class CarrinhoController {
             }
         }
 
-        mv.addObject("listaItens", listItensCompras);
-        return mv;
+        return "redirect:/carrinho";
     }
 
     @GetMapping("/removerProduto/{id}")
@@ -61,7 +60,7 @@ public class CarrinhoController {
     }
 
     @GetMapping("/adicionarCarrinho/{id}")
-    public ModelAndView adicionarCarrinho(@PathVariable Long id) {
+    public String  adicionarCarrinho(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("/cliente/carrinho");
         Optional<Produto> produto = produtoRepository.findById(id);
 
@@ -84,7 +83,6 @@ public class CarrinhoController {
             listItensCompras.add(itensCompra);
         }
 
-        mv.addObject("listaItens", listItensCompras);
-        return mv;
+        return "redirect:/carrinho";
     }
 }
