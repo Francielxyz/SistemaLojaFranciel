@@ -34,9 +34,15 @@ public class ItensCompra implements Serializable {
 	private Double valorTotal;
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(id);
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		ItensCompra that = (ItensCompra) o;
+		return Objects.equals(id, that.id) && Objects.equals(produto, that.produto) && Objects.equals(compra, that.compra) && Objects.equals(quantidade, that.quantidade) && Objects.equals(valorUnitario, that.valorUnitario) && Objects.equals(valorTotal, that.valorTotal);
 	}
 
-
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, produto, compra, quantidade, valorUnitario, valorTotal);
+	}
 }

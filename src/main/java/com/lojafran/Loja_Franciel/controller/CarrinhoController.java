@@ -36,7 +36,7 @@ public class CarrinhoController {
             if (it.getProduto().getId().equals(id)) {
                 if (acao.equals(1)) {
                     it.setQuantidade(it.getQuantidade() + 1);
-                } else if (acao == 0) {
+                } else if (acao == 0 && it.getQuantidade() > 0) {
                     it.setQuantidade(it.getQuantidade() - 1);
                 }
                 break;
@@ -45,6 +45,19 @@ public class CarrinhoController {
 
         mv.addObject("listaItens", listItensCompras);
         return mv;
+    }
+
+    @GetMapping("/removerProduto/{id}")
+    public String removerProdutoCarrinho(@PathVariable Long id) {
+
+        for (ItensCompra it : listItensCompras) {
+            if (it.getProduto().getId().equals(id)) {
+                listItensCompras.remove(it);
+                break;
+            }
+        }
+
+        return "redirect:/carrinho";
     }
 
     @GetMapping("/adicionarCarrinho/{id}")
