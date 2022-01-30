@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org/%22%3E">
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{cliente/fragments/layout}">
+<head>
+
+    <title>Carrinho de Compras</title>
+
+</head>
+<body>
+
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5"></div>
+</header>
+
+<!-- Page Content -->
+<div class="container" layout:fragment="corpo">
+    <form action="/finalizar/confirmar" method="post">
+        <div class="row">
+            <div class="col-12">
+                <h1>Informações do cliente que está logado na aplicação</h1>
+            </div>
+
+
+            <div class="col-3">
+                <select class="form-control" name="formaPagamento">
+                    <option value="Cartão de Crédito">Cartão de Crédito</option>
+                    <option value="Cartão de Débito">Cartão de Débito</option>
+                    <option value="Boleto">Boleto</option>
+                    <option value="Transferência">Transferência</option>
+                </select>
+            </div>
+
+
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Produto</th>
+                            <th scope="col">Estoque</th>
+                            <th scope="col" class="text-center">Quantidade</th>
+                            <th scope="col" class="text-right">Valor Unitário</th>
+                            <th scope="col" class="text-right">Valor Total</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="item : ${listaItens}">
+                            <td><img src="https://dummyimage.com/50x50/55595c/fff"/></td>
+                            <td th:text="${item.produto.descricao}"></td>
+                            <td>Em estoque</td>
+                            <td><span th:text="${item.quantidade}"></span> &nbsp;&nbsp;
+                            </td>
+                            <td class="text-right" th:text="${item.valorTotal}"></td>
+                            <td class="text-right">
+
+                                <a class="btn btn-sm btn-danger" th:href="@{/removerProduto/{id}(id=${item.produto.id})}" role="button"><i class="fa fa-trash"></i></a></td>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Total</strong></td>
+                            <td class="text-right"><span th:text="${compra.valorTotal}"></span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="col mb-2">
+                <div class="row">
+                    <div class="col-sm-12  col-md-6"></div>
+                    <div class="col-sm-12 col-md-6 text-right">
+                        <button class="btn btn-lg btn-block btn-success text-uppercase">Confirmar a Compra</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+</body>
+
+</html>

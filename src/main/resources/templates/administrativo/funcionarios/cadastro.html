@@ -3,7 +3,7 @@
 
 <html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{administrativo/fragments/layout}">
 <head>
-    <title>PAgina Cadastro de FuncionArio da loja virtual</title>
+    <title>Pagina Cadastro de Funcionario da Loja Virtual</title>
 
 </head>
 <body>
@@ -38,9 +38,7 @@
 
                 <div class="form-group col-md-6">
                     <label for="cpf">CPF</label>
-                    <input type="text" class="form-control cpf-mask" onblur="if (this.value !== '') {validacaoDeCPF()}"
-                           placeholder="Apenas números" data-mask="000.000.000-00" id="cpf" name="cpf" th:field="*{cpf}"
-                           maxlength="14" value=""/>
+                    <input type="text" class="form-control cpf-mask" onblur="if (this.value !== '') {validacaoDeCPF()}" placeholder="Apenas números" data-mask="000.000.000-00" id="cpf" name="cpf" th:field="*{cpf}" maxlength="14" value=""/>
                     <span class="font-weight-bold text-danger" role="alert" id="retornoFalse"></span>
                     <span class="font-weight-bold text-success" role="alert" id="retornoTrue"></span>
                 </div>
