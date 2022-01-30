@@ -29,9 +29,9 @@ public class ItensCompra implements Serializable {
 
 	private Integer quantidade = 0;
 
-	private Double valorUnitario;
+	private Double valorUnitario =0.0;
 
-	private Double valorTotal;
+	private Double valorTotal = 0.0;
 
 	@Override
 	public boolean equals(Object o) {

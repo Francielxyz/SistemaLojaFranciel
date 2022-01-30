@@ -30,7 +30,7 @@ public class Compra implements Serializable {
 
 	private String formaPagamento;
 
-	private Double valorTotal;
+	private Double valorTotal = 0.0;
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
