@@ -37,23 +37,12 @@ public class CarrinhoController {
     private ProdutoRepository produtoRepository;
 
     @Autowired
-    private ClienteRepository clienteRepository;
-
-    @Autowired
     private CompraRepository compraRepository;
 
     @Autowired
     private ItensCompraRepository itensCompraRepository;
 
     private final CarrinhoService carrinhoService;
-
-    private void buscarUsuarioLogado() {
-        Authentication autenticado = SecurityContextHolder.getContext().getAuthentication();
-        if (!(autenticado instanceof AnonymousAuthenticationToken)) {
-            String email = autenticado.getName();
-            cliente = clienteRepository.buscarClienteEmail(email).get(0);
-        }
-    }
 
     @GetMapping("/carrinho")
     public ModelAndView carrinho() {
@@ -66,7 +55,7 @@ public class CarrinhoController {
 
     @GetMapping("/finalizar")
     public ModelAndView finalizarCompra() {
-        buscarUsuarioLogado();
+        cliente = carrinhoService.buscarUsuarioLogado(cliente);
         ModelAndView mv = new ModelAndView("cliente/finalizar");
         listItensCompras = carrinhoService.calcularTotal(listItensCompras);
         mv.addObject("compra", compra);
