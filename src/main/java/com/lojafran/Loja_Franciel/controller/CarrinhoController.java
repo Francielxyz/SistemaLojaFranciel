@@ -8,6 +8,9 @@ import com.lojafran.Loja_Franciel.repository.ClienteRepository;
 import com.lojafran.Loja_Franciel.repository.CompraRepository;
 import com.lojafran.Loja_Franciel.repository.ItensCompraRepository;
 import com.lojafran.Loja_Franciel.repository.ProdutoRepository;
+import com.lojafran.Loja_Franciel.service.CarrinhoService;
+import groovy.util.logging.Slf4j;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,6 +26,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequiredArgsConstructor
+@Slf4j
 public class CarrinhoController {
     private Compra compra = new Compra();
     private Cliente cliente;
@@ -40,12 +45,7 @@ public class CarrinhoController {
     @Autowired
     private ItensCompraRepository itensCompraRepository;
 
-    private void calcularTotal() {
-        compra.setValorTotal(0.);
-        for (ItensCompra it : listItensCompras) {
-            compra.setValorTotal(compra.getValorTotal() + it.getValorTotal());
-        }
-    }
+    private final CarrinhoService carrinhoService;
 
     private void buscarUsuarioLogado() {
         Authentication autenticado = SecurityContextHolder.getContext().getAuthentication();
@@ -58,7 +58,7 @@ public class CarrinhoController {
     @GetMapping("/carrinho")
     public ModelAndView carrinho() {
         ModelAndView mv = new ModelAndView("/cliente/carrinho");
-        calcularTotal();
+        listItensCompras = carrinhoService.calcularTotal(listItensCompras);
         mv.addObject("compra", compra);
         mv.addObject("listaItens", listItensCompras);
         return mv;
@@ -68,7 +68,7 @@ public class CarrinhoController {
     public ModelAndView finalizarCompra() {
         buscarUsuarioLogado();
         ModelAndView mv = new ModelAndView("cliente/finalizar");
-        calcularTotal();
+        listItensCompras = carrinhoService.calcularTotal(listItensCompras);
         mv.addObject("compra", compra);
         mv.addObject("listaItens", listItensCompras);
         mv.addObject("cliente", cliente);
