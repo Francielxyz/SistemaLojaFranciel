@@ -5,6 +5,8 @@ import com.lojafran.Loja_Franciel.entity.Compra;
 import com.lojafran.Loja_Franciel.entity.ItensCompra;
 import com.lojafran.Loja_Franciel.entity.Produto;
 import com.lojafran.Loja_Franciel.repository.ClienteRepository;
+import com.lojafran.Loja_Franciel.repository.CompraRepository;
+import com.lojafran.Loja_Franciel.repository.ItensCompraRepository;
 import com.lojafran.Loja_Franciel.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -13,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -31,6 +34,12 @@ public class CarrinhoController {
     @Autowired
     private ClienteRepository clienteRepository;
 
+    @Autowired
+    private CompraRepository compraRepository;
+
+    @Autowired
+    private ItensCompraRepository itensCompraRepository;
+
     private void calcularTotal() {
         compra.setValorTotal(0.);
         for (ItensCompra it : listItensCompras) {
@@ -38,6 +47,13 @@ public class CarrinhoController {
         }
     }
 
+    private void buscarUsuarioLogado() {
+        Authentication autenticado = SecurityContextHolder.getContext().getAuthentication();
+        if (!(autenticado instanceof AnonymousAuthenticationToken)) {
+            String email = autenticado.getName();
+            cliente = clienteRepository.buscarClienteEmail(email).get(0);
+        }
+    }
 
     @GetMapping("/carrinho")
     public ModelAndView carrinho() {
@@ -59,12 +75,20 @@ public class CarrinhoController {
         return mv;
     }
 
-    private void buscarUsuarioLogado() {
-        Authentication autenticado = SecurityContextHolder.getContext().getAuthentication();
-        if (!(autenticado instanceof AnonymousAuthenticationToken)) {
-            String email = autenticado.getName();
-            cliente = clienteRepository.buscarClienteEmail(email).get(0);
+    @PostMapping("/finalizar/confirmar")
+    public ModelAndView confirmarCompra(String formaPagamento) {
+        ModelAndView mv = new ModelAndView("cliente/mensagemFinalizou");
+        compra.setCliente(cliente);
+        compra.setFormaPagamento(formaPagamento);
+        compraRepository.saveAndFlush(compra);
+
+        for (ItensCompra c : listItensCompras) {
+            c.setCompra(compra);
+            itensCompraRepository.saveAndFlush(c);
         }
+        listItensCompras = new ArrayList<>();
+        compra = new Compra();
+        return mv;
     }
 
     @GetMapping("/alterarQuantidade/{id}/{acao}")
