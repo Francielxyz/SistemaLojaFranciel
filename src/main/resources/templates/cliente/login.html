@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org/%22%3E">
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{cliente/fragments/layout}">
+<head>
+    <title>Carrinho de Compras</title>
+
+    <style type="text/css">
+        .centerT{
+            margin: auto;
+            width: 100%;
+            background: #fff;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+
+<body>
+
+<!-- Page Content -->
+<div class="container" layout:fragment="corpo">
+
+    <div class="centerT">
+
+        <div class="col-6">
+            <h2>Login</h2>
+        </div>
+
+        <div class="col-6">
+            <form action="/finalizar/login" method="POST">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label>Email</label>
+                        <input type="text" name="username" class="form-control" placeholder="Email" autofocus="autofocus" value=""/>
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label>Senha</label>
+                        <input type="password" name="password" class="form-control" placeholder="Senha" autofocus="autofocus" value=""/>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm">Efetuar Login</button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>
+<script>
+
+</script>
+</html>

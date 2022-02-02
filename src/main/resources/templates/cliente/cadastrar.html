@@ -5,18 +5,24 @@
 
     <title>Carrinho de Compras</title>
 
+    <style type="text/css">
+        .centerT{
+            margin: auto;
+            width: 100%;
+            background: #fff;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
 
 <!-- Page Content -->
 <div class="container" layout:fragment="corpo">
 
-    <div class="row">
+    <div class="centerT">
+
         <div class="col-6">
-            <h2>Registro Shopping Franciel</h2>
-        </div>
-        <div class="col-6">
-            <h2>Login</h2>
+            <h2>Registro Cliente</h2>
         </div>
 
         <div class="col-6">
@@ -28,14 +34,14 @@
                         <div class="invalid-feedback"></div>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label for="cpf">CPF</label>
                         <input type="text" class="form-control cpf-mask" onblur="if (this.value !== '') {validacaoDeCPF()}" placeholder="Apenas números" data-mask="000.000.000-00" id="cpf" name="cpf" th:field="*{cpf}" maxlength="14" value=""/>
                         <span class="font-weight-bold text-danger" role="alert" id="retornoFalse"></span>
                         <span class="font-weight-bold text-success" role="alert" id="retornoTrue"></span>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label for="cidade">Cidade</label>
                         <select th:field="*{cidade}" class="form-control">
                         <option th:each="cid: ${listaCidades}" th:value="${cid.id}" th:text="${cid.nome}"></option>
@@ -44,13 +50,13 @@
                         <div class="invalid-feedback"></div>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label for="email">Email</label>
                         <input type="text" class="form-control" id="email" placeholder="Email" autofocus="autofocus" th:field="*{email}" value=""/>
                         <div class="invalid-feedback"></div>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label for="senha">Senha</label>
                         <input type="password" class="form-control" id="nome" placeholder="Senha" autofocus="autofocus" th:field="*{senha}" value=""/>
                         <div class="invalid-feedback"></div>
@@ -60,28 +66,6 @@
 
                 <input type="hidden" id="id" th:field="*{id}" value=""/>
                 <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
-            </form>
-        </div>
-
-        <div class="col-6">
-            <form action="/finalizar/login" method="POST">
-                <div class="form-row">
-
-                    <div class="form-group col-md-12">
-                        <label>Email</label>
-                        <input type="text" name="username" class="form-control" placeholder="Email" autofocus="autofocus" value=""/>
-                        <div class="invalid-feedback"></div>
-                    </div>
-
-                    <div class="form-group col-md-12">
-                        <label>Senha</label>
-                        <input type="password" name="password" class="form-control" placeholder="Senha" autofocus="autofocus" value=""/>
-                        <div class="invalid-feedback"></div>
-                    </div>
-
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-sm">Efetuar Login</button>
             </form>
         </div>
 

@@ -35,6 +35,14 @@ public class ClienteController {
 		return mv;
 	}
 
+	@GetMapping("/login")
+	public ModelAndView login(Cliente cliente) {
+		ModelAndView mv =  new ModelAndView("cliente/login");
+		mv.addObject("cliente",cliente);
+		mv.addObject("listaCidades",cidadeRepositorio.findAll());
+		return mv;
+	}
+
 	@GetMapping("/editar/{id}")
 	public ModelAndView editar(@PathVariable("id") Long id) {
 		Optional<Cliente> cliente = clienteRepositorio.findById(id);
