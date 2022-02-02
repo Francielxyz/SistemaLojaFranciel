@@ -3,7 +3,7 @@
 <html xmlns:layout="http://www.w3.org/1999/xhtml"
 	layout:decorate="~{administrativo/fragments/layout}">
 <head>
-<title>Página Entrada de Produtos de loja virtual</title>
+<title>Pagina Entrada de Produtos de loja virtual</title>
 </head>
 <body>
 	<section class="layout-content" layout:fragment="corpo">
@@ -30,7 +30,7 @@
 				<div class="form-row">
 
 					<div class="form-group col-md-6">
-						<label>Funcionários</label> <select th:field="*{funcionario}"
+						<label>Funcionarios</label> <select th:field="*{funcionario}"
 							class="form-control">
 							<option th:each="fun: ${listaFuncionarios}" th:value="${fun.id}"
 								th:text="${fun.nome}"></option>
@@ -39,7 +39,7 @@
 					</div>
 
 					<div class="form-group col-md-6">
-						<label for="nome">Observação</label> <input type="text"
+						<label for="nome">Observacao</label> <input type="text"
 							class="form-control" id="observacao" placeholder="Observação"
 							autofocus="autofocus" th:field="*{observacao}" value="" />
 						<div class="invalid-feedback"></div>
@@ -106,7 +106,7 @@
 							<table class="table table-striped table-hover table-sm">
 								<thead>
 									<tr>
-										<th>Descrição</th>
+										<th>Descricao</th>
 										<th>Quantidade</th>
 										<th>Valor Custo</th>
 										<th>Valor Venda</th>

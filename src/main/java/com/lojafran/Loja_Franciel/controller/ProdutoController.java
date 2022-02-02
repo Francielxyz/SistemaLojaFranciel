@@ -71,16 +71,16 @@ public class ProdutoController {
     @GetMapping("/listar/categoria") //TODO - TENTA IMPLEMENTA NUM SERVICE
     public ModelAndView listarPorCategoria(String nome) {
 
-        List<Categoria> listCategoria =  categoriaRepository.findByNome(nome);
+        List<Categoria> listCategoria = categoriaRepository.findByNome(nome);
         List<Produto> listProduto = new ArrayList<>();
 
-        for(Categoria categoria : listCategoria){
+        for (Categoria categoria : listCategoria) {
             listProduto = produtoRepository.findByCategoria(categoria);
 
         }
 
         ModelAndView mv = new ModelAndView("administrativo/produtos/lista");
-        mv.addObject("listaProdutos",  listProduto);
+        mv.addObject("listaProdutos", listProduto);
 
         return mv;
     }
@@ -90,7 +90,7 @@ public class ProdutoController {
         List<Produto> listProduto = new ArrayList<>();
         List<Marca> listMarca = marcaRepository.findByNome(nome);
 
-        for(Marca marca : listMarca){
+        for (Marca marca : listMarca) {
             listProduto = produtoRepository.findByMarca(marca);
         }
 
@@ -128,19 +128,18 @@ public class ProdutoController {
 
 
     @PostMapping("/salvar")
-    public ModelAndView salvar(@Validated Produto produto, BindingResult result, @RequestParam("file") List<MultipartFile> arquivo) {
+    public ModelAndView salvar(@Validated Produto produto, BindingResult result, @RequestParam("file") MultipartFile[] files) {
 
         if (result.hasErrors()) {
             return cadastrar(produto);
         }
         produto = produtoRepository.saveAndFlush(produto);
         try {
+            List<Imagem> imagemList = new ArrayList<>();
 
-            if (!arquivo.isEmpty()) {
+            for (MultipartFile file : files) {
 
-                List<Imagem> imagemList = new ArrayList<>();
-
-                for(MultipartFile file : arquivo) {
+                if(!file.getOriginalFilename().isEmpty()){
                     Imagem imagem = new Imagem();
 
                     byte[] bytes = file.getBytes();
@@ -149,17 +148,14 @@ public class ProdutoController {
                     Path caminho = Paths.get(constantsImagens.CAMINHO_PASTA_IMAGENS + String.valueOf(produto.getId()) + file.getOriginalFilename());
                     Files.write(caminho, bytes);
 
-                    Imagem imagemComValores  = setValoresImagens(imagem, produto, file);
+                    Imagem imagemComValores = setValoresImagens(imagem, produto, file);
 
                     imagemList.add(imagemRepository.saveAndFlush(imagemComValores));
                 }
             }
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
         return cadastrar(new Produto());
     }
@@ -168,7 +164,7 @@ public class ProdutoController {
     public ModelAndView salvarLotes() {
         List<Produto> listProdut = new ArrayList<>();
 
-        for(int x = 0; x < 50000; x++){
+        for (int x = 0; x < 50000; x++) {
             Produto produto = new Produto();
             produto.setDescricao("Computador muito bom");
             produto.setValorVenda(10.0);
@@ -184,7 +180,7 @@ public class ProdutoController {
     }
 
 
-    public Imagem setValoresImagens(Imagem imagem, Produto produto, MultipartFile file){
+    public Imagem setValoresImagens(Imagem imagem, Produto produto, MultipartFile file) {
 
         imagem.setNome(String.valueOf(produto.getId() + file.getOriginalFilename()));
         imagem.setProduto(produto);

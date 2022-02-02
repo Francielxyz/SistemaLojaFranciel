@@ -19,6 +19,50 @@
 			</div>
 		</nav>
 
+		<div class="container">
+			<div class="row mb-3">
+				<div class="col-sm-12">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Produtos</h5>
+							<p class="card-text" th:text="${qntprodutos + ' produtos cadastrados.'} "> </p>
+							<a href="/administrativo/produtos/listar/paged" class="btn btn-primary">Listar produtos</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<div class="col-sm-4">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Funcionarios</h5>
+							<p class="card-text" th:text="${qntfuncionarios + ' funcionarios cadastrados.'}"></p>
+							<a href="/administrativo/funcionarios/listar" class="btn btn-primary">Listar funcionarios</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Marcas</h5>
+							<p class="card-text" th:text="${qntmarcas + ' marcas cadastradas.'}"></p>
+							<a href="/administrativo/marcas/listar" class="btn btn-primary">Listar marcas</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Categorias</h5>
+							<p class="card-text" th:text="${qntcategorias + ' categorias cadastradas.'}"></p>
+							<a href="/administrativo/categorias/listar" class="btn btn-primary">Listar categorias</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 	</section>
 
 </body>

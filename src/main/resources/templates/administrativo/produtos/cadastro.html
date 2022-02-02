@@ -3,7 +3,7 @@
 <html xmlns:layout="http://www.w3.org/1999/xhtml"
 	  layout:decorate="~{administrativo/fragments/layout}">
 <head>
-	<title>Página Cadastro de Produtos da loja virtual</title>
+	<title>Pagina Cadastro de Produtos da loja virtual</title>
 </head>
 <body>
 <section class="layout-content" layout:fragment="corpo">
@@ -28,7 +28,7 @@
 			  enctype="multipart/form-data" th:object="${produto}" method="POST">
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="nome">Descrição do Produto</label>
+					<label for="nome">Descricao do Produto</label>
 					<input type="text" class="form-control" id="nome" placeholder="Descrição" autofocus="autofocus"
 						   th:field="*{descricao}" value=""/>
 					<div class="invalid-feedback"></div>
@@ -78,12 +78,9 @@
 		<!--				</div>-->
 		<!--			</form>-->
 
-
 	</div>
 
-
 </section>
-
 
 </body>
 </html>

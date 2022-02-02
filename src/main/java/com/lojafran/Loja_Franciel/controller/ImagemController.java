@@ -1,32 +1,37 @@
 package com.lojafran.Loja_Franciel.controller;
 
 import com.lojafran.Loja_Franciel.constants.ConstantsImagens;
+import com.lojafran.Loja_Franciel.entity.Imagem;
+import com.lojafran.Loja_Franciel.entity.Produto;
+import com.lojafran.Loja_Franciel.repository.ImagemRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.List;
 
 @Controller
 public class ImagemController {
 
-    ConstantsImagens constantsImagens;
+    @Autowired
+    private ImagemRepository imagemRepository;
 
-    @GetMapping("/mostrarImagem/{imagem}")
+    @GetMapping("/mostraImagem/{productid}")
     @ResponseBody
-    public byte[] retornarImagem(@PathVariable("imagem") String imagem) throws IOException {
-        File imagemArquivo = new File(constantsImagens.CAMINHO_PASTA_IMAGENS + imagem);
-        if (imagem != null || imagem.trim().length() > 0) {
-            try {
-                return Files.readAllBytes(imagemArquivo.toPath());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    public byte[] getImage(@PathVariable("productid") Long productid) throws IOException {
+        Produto produto = new Produto();
+        produto.setId(productid);
+        List<Imagem> imagens = imagemRepository.findImagemByProduto(produto);
+        File imageFile = new File(ConstantsImagens.CAMINHO_PASTA_IMAGENS + "erroImagem.png");
+        if (imagens.size() > 0 && !imagens.isEmpty() && imagens != null) {
+            imageFile = new File(ConstantsImagens.CAMINHO_PASTA_IMAGENS + imagens.get(0).getNome());
+            return Files.readAllBytes(imageFile.toPath());
+        } else {
+            return Files.readAllBytes(imageFile.toPath());
         }
-        return null;
     }
-
-
 
 }
