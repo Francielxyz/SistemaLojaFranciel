@@ -3,7 +3,7 @@
 <html xmlns:layout="http://www.w3.org/1999/xhtml"
 	layout:decorate="~{administrativo/fragments/layout}">
 <head>
-<title>Pagina Entrada de Produtos de loja virtual</title>
+<title>Cadastrar Entrada de Produtos</title>
 </head>
 <body>
 	<section class="layout-content" layout:fragment="corpo">
@@ -16,7 +16,7 @@
 					</ul>
 				</div>
 				<a class="btn btn-primary btn-md"
-					href="/administrativo/entrada/listar" role="button"> <span
+					href="#" role="button"> <span
 					class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
 					<span>Listar Entrada de Produtos</span>
 				</a>
@@ -40,7 +40,7 @@
 
 					<div class="form-group col-md-6">
 						<label for="nome">Observacao</label> <input type="text"
-							class="form-control" id="observacao" placeholder="Observação"
+							class="form-control" id="observacao" placeholder="Observacao"
 							autofocus="autofocus" th:field="*{observacao}" value="" />
 						<div class="invalid-feedback"></div>
 					</div>

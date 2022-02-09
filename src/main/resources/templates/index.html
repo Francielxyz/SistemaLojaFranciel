@@ -30,6 +30,9 @@
             <div class="row">
 
                 <div class="col mb-5" th:each=" produto : ${listaProdutos}">
+
+
+
                     <div class="card h-100">
                         <img class="card-img-top" th:src="@{/mostraImagem/{productid}(productid=${produto.id})}" alt="..." />
 

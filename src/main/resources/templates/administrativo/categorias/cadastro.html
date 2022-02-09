@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org/%22%3E">
 <html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{administrativo/fragments/layout}">
 <head>
-    <title>Página Cadastro de categorias da loja virtual</title>
+    <title>Cadastrar Categorias</title>
 </head>
 <body>
 		<section class="layout-content" layout:fragment="corpo">
@@ -34,8 +34,8 @@
 						</div>
 						
 						<div class="form-group col-md-6">
-							<label for="salario">Descrição da Categoria</label> <input type="text"
-								class="form-control" id="descricao" placeholder="Descrição"
+							<label for="salario">Descricao da Categoria</label> <input type="text"
+								class="form-control" id="descricao" placeholder="Descricao"
 								data-mask-reverse="true" th:field="*{descricao}" value="" />
 							<div class="invalid-feedback"></div>
 						</div>
