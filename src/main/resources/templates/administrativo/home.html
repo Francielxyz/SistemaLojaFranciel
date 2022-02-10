@@ -1,69 +1,113 @@
 <!DOCTYPE HTML>
 <html xmlns:layout="http://www.w3.org/1999/xhtml"
-	layout:decorate="~{administrativo/fragments/layout}">
+      layout:decorate="~{administrativo/fragments/layout}">
 <head>
-	<title>Pagina Principal</title>
-	<meta charset="utf-8" />
-	<link href="/static/css/style.css" rel="stylesheet" />
+    <title>Pagina Principal</title>
+    <meta charset="utf-8"/>
+    <link href="/static/css/style.css" rel="stylesheet"/>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+<!--    <link href="/static/css/sb-admin-2.min.css" rel="stylesheet">-->
 </head>
 <body>
-	<section class="layout-content" layout:fragment="corpo">
-		<nav class="navbar navbar-expand-md bg-light">
-			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<i class="oi oi-caret-right"></i>
-						<span>Dashboard</span>
-					</li>
-				</ul>
-			</div>
-		</nav>
+<section class="layout-content" layout:fragment="corpo">
+    <nav class="navbar navbar-expand-md bg-light">
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <i class="oi oi-caret-right"></i>
+                    <span>Dashboard</span>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-		<div class="container">
-			<div class="row mb-3">
-				<div class="col-sm-12">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">Produtos</h5>
-							<p class="card-text" th:text="${qntprodutos + ' produtos cadastrados.'} "> </p>
-							<a href="/administrativo/produtos/listar/paged" class="btn btn-primary">Listar produtos</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row mb-3">
-				<div class="col-sm-4">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">Funcionarios</h5>
-							<p class="card-text" th:text="${qntfuncionarios + ' funcionarios cadastrados.'}"></p>
-							<a href="/administrativo/funcionarios/listar" class="btn btn-primary">Listar funcionarios</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">Marcas</h5>
-							<p class="card-text" th:text="${qntmarcas + ' marcas cadastradas.'}"></p>
-							<a href="/administrativo/marcas/listar" class="btn btn-primary">Listar marcas</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">Categorias</h5>
-							<p class="card-text" th:text="${qntcategorias + ' categorias cadastradas.'}"></p>
-							<a href="/administrativo/categorias/listar" class="btn btn-primary">Listar categorias</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+    <div class="container">
 
 
-	</section>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary-produto shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary-produto text-uppercase mb-1">Produtos</div>
+                            <div class="mb-0 font-weight-bold text-gray-800">
+                                <p class="card-text" th:text="${totalProdutos + ' Produtos cadastrados.'} "></p>
+                                <p class="card-text2" th:text="${totalProdutosEstoque + ' Produtos em estoque ao total.'} "></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary-venda shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary-venda text-uppercase mb-1">Vendas</div>
+                            <div class="mb-0 font-weight-bold text-gray-800">
+                                <p class="card-text" th:text="${totalCompras + ' Vendas realizadas.'} "></p>
+                                <p class="card-text2" th:text="${totalCompraVendidas + ' Valor ganho em vendas.'} "></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary-marca shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary-marca text-uppercase mb-1">Marca</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <p class="card-text" th:text="${totalMarcas + ' Marcas cadastrados.'} "></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary-categoria shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary-categoria text-uppercase mb-1">Categoria</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <p class="card-text" th:text="${totalCategorias + ' Categorias cadastradas.'} "></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary-funcionario shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary-funcionario text-uppercase mb-1">Funcionario</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <p class="card-text" th:text="${totalFuncionarios + ' Funcionarios cadastrados.'} "></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
 
 </body>
 </html>

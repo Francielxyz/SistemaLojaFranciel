@@ -1,190 +1,202 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/%22%3E">
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-<title>Loja Virtual com Spring MVC Spring Boot</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<link rel="icon" href="/image/favicon.png" />
+    <title>Loja Virtual com Spring MVC Spring Boot</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="icon" href="/image/favicon.png"/>
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
-<!-- Bootstrap core CSS -->
-<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
-	rel="stylesheet" />
+    <!-- Bootstrap core CSS -->
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
+          rel="stylesheet"/>
 
-<!-- Custom styles for this template -->
-<link href="/css/style.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet"/>
 </head>
 <body>
-	<header>
-		<nav class="navbar navbar-inverse navbar navbar-dark bg-dark fixed-top">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="btn btn-dark navbar-toggle pull-left">
-						<i class="oi oi-menu"></i>
-					</button>
-					<a class="navbar-brand " href="#">Painel Administrativo</a>
-				</div>
-			</div>
-		</nav>
-	</header>
+<header>
+    <nav class="navbar navbar-inverse navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="btn btn-dark navbar-toggle pull-left">
+                    <i class="oi oi-menu"></i>
+                </button>
+                <a class="navbar-brand " href="#">Painel Administrativo</a>
+            </div>
+        </div>
+    </nav>
+</header>
 
-	<div class="layout-main">
+<div class="layout-main">
 
-		<aside>
-			<nav class="sidebar sidebar-open" style="height: 1600px">
-<!--				<ul class="nav nav-pills">-->
-					<li class="nav-item">
-						<a class="nav-link " href="/administrativo">
-							<i class="oi oi-fw"></i>
-							<span>Dashboard</span>
-						</a>
-					</li>
-<!--				</ul>-->
+    <aside>
+        <nav class="sidebar sidebar-open" style="height: 1000px; background: #2c3034">
 
-				<!-- Produtos -->
-				<li class="nav-item">
-					<a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseProdutos" aria-expanded="true" aria-controls="collapseProdutos">
-						<i class="oi oi-fw oi-dollar"></i>
-						<span>Produtos</span>
-					</a>
-					<div id="collapseProdutos" class="collapse" aria-labelledby="headingProdutos" data-parent="#accordionSidebar">
-						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="nav-link" href="/administrativo/produtos/cadastrar">Cadastrar Produtos</a>
-							<a class="nav-link" href="/administrativo/produtos/listar">Listar Produtos</a>
-						</div>
-					</div>
-				</li>
+            <li class="nav-item">
+                <a class="nav-link " href="/administrativo">
+                    <i class="oi oi-fw"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
 
-				<!-- Entrada de Produtos -->
-				<li class="nav-item">
-					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEntradaProdutos"
-					   aria-expanded="true" aria-controls="collapseEntradaProdutos">
-						<i class="oi oi-fw oi-transfer"></i>
-						<span>Entrada Produtos</span>
-					</a>
-					<div id="collapseEntradaProdutos" class="collapse" aria-labelledby="headingEntradaProdutos"
-						 data-parent="#accordionSidebar">
-						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="nav-link" href="/administrativo/entrada/cadastrar">Cadastrar Entrada de Produto</a>
-							<a class="nav-link" href="#">Listar Entrada de Produto</a>
-						</div>
-					</div>
-				</li>
+            <!-- Produtos -->
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseProdutos" aria-expanded="true"
+                   aria-controls="collapseProdutos">
+                    <i class="oi oi-fw oi-dollar"></i>
+                    <span>Produtos</span>
+                </a>
+                <div id="collapseProdutos" class="collapse" aria-labelledby="headingProdutos"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="nav-link" href="/administrativo/produtos/cadastrar">Cadastrar Produtos</a>
+                        <a class="nav-link" href="/administrativo/produtos/listar">Listar Produtos</a>
+                    </div>
+                </div>
+            </li>
 
-				<!-- Marcas e Categorias -->
-				<li class="nav-item">
-					<a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseMarcaCategoria" aria-expanded="true" aria-controls="collapseProdutos">
-						<i class="oi oi-fw oi-book"></i>
-						<span>Marcas e Categorias</span>
-					</a>
-					<div id="collapseMarcaCategoria" class="collapse" aria-labelledby="headingProdutos" data-parent="#accordionSidebar">
-						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="nav-link" href="/administrativo/marcas/cadastrar">Cadastrar Marcas</a>
-							<a class="nav-link" href="/administrativo/marcas/listar">Listar Marcas</a>
-							<a class="nav-link" href="/administrativo/categorias/cadastrar">Cadastrar Categorias</a>
-							<a class="nav-link" href="/administrativo/categorias/listar">Listar Categorias</a>
-						</div>
-					</div>
-				</li>
+            <!-- Entrada de Produtos -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEntradaProdutos"
+                   aria-expanded="true" aria-controls="collapseEntradaProdutos">
+                    <i class="oi oi-fw oi-transfer"></i>
+                    <span>Entrada Produtos</span>
+                </a>
+                <div id="collapseEntradaProdutos" class="collapse" aria-labelledby="headingEntradaProdutos"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="nav-link" href="/administrativo/entrada/cadastrar">Cadastrar Entrada de Produto</a>
+                        <a class="nav-link" href="#">Listar Entrada de Produto</a>
+                    </div>
+                </div>
+            </li>
 
-				<!-- Funcionários -->
-				<li class="nav-item">
-					<a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseFuncionario" aria-expanded="true" aria-controls="collapseProdutos">
-						<i class="oi oi-fw oi-people"></i>
-						<span>Funcionarios</span>
-					</a>
-					<div id="collapseFuncionario" class="collapse" aria-labelledby="headingProdutos" data-parent="#accordionSidebar">
-						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="nav-link" href="/administrativo/funcionarios/cadastrar">Cadastrar Funcionarios</a>
-							<a class="nav-link" href="/administrativo/funcionarios/listar">Listar Funcionarios</a>
-						</div>
-					</div>
-				</li>
+            <!-- Marcas e Categorias -->
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseMarcaCategoria"
+                   aria-expanded="true" aria-controls="collapseProdutos">
+                    <i class="oi oi-fw oi-book"></i>
+                    <span>Marcas e Categorias</span>
+                </a>
+                <div id="collapseMarcaCategoria" class="collapse" aria-labelledby="headingProdutos"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="nav-link" href="/administrativo/marcas/cadastrar">Cadastrar Marcas</a>
+                        <a class="nav-link" href="/administrativo/marcas/listar">Listar Marcas</a>
+                        <a class="nav-link" href="/administrativo/categorias/cadastrar">Cadastrar Categorias</a>
+                        <a class="nav-link" href="/administrativo/categorias/listar">Listar Categorias</a>
+                    </div>
+                </div>
+            </li>
 
-				<!-- Papeis e Permissões -->
-				<li class="nav-item">
-					<a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePermissãoPapel" aria-expanded="true" aria-controls="collapseProdutos">
-						<i class="oi oi-fw oi-briefcase"></i>
-						<span>Papeis e Permissões</span>
-					</a>
-					<div id="collapsePermissãoPapel" class="collapse" aria-labelledby="headingProdutos" data-parent="#accordionSidebar">
-						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="nav-link" href="/administrativo/papeis/cadastrar">Cadastrar Papeis</a>
-							<a class="nav-link" href="/administrativo/papeis/listar">Listar Papeis</a>
-							<a class="nav-link" href="/administrativo/permissoes/cadastrar">Cadastrar Permissões</a>
-							<a class="nav-link" href="/administrativo/permissoes/listar">Listar Permissões</a>
-						</div>
-					</div>
-				</li>
+            <!-- Funcionários -->
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseFuncionario"
+                   aria-expanded="true" aria-controls="collapseProdutos">
+                    <i class="oi oi-fw oi-people"></i>
+                    <span>Funcionarios</span>
+                </a>
+                <div id="collapseFuncionario" class="collapse" aria-labelledby="headingProdutos"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="nav-link" href="/administrativo/funcionarios/cadastrar">Cadastrar Funcionarios</a>
+                        <a class="nav-link" href="/administrativo/funcionarios/listar">Listar Funcionarios</a>
+                    </div>
+                </div>
+            </li>
 
-				<!-- Cidades -->
-				<li class="nav-item">
-					<a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseCidade" aria-expanded="true" aria-controls="collapseProdutos">
-						<i class="oi oi-fw oi-badge"></i>
-						<span>Cidades</span>
-					</a>
-					<div id="collapseCidade" class="collapse" aria-labelledby="headingProdutos" data-parent="#accordionSidebar">
-						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="nav-link" href="/administrativo/cidades/cadastrar">Cadastrar Cidades</a>
-							<a class="nav-link" href="/administrativo/cidades/listar">Listar Cidades</a>
-						</div>
-					</div>
-				</li>
+            <!-- Papeis e Permissões -->
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePermissãoPapel"
+                   aria-expanded="true" aria-controls="collapseProdutos">
+                    <i class="oi oi-fw oi-briefcase"></i>
+                    <span>Papeis e Permissões</span>
+                </a>
+                <div id="collapsePermissãoPapel" class="collapse" aria-labelledby="headingProdutos"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="nav-link" href="/administrativo/papeis/cadastrar">Cadastrar Papeis</a>
+                        <a class="nav-link" href="/administrativo/papeis/listar">Listar Papeis</a>
+                        <a class="nav-link" href="/administrativo/permissoes/cadastrar">Cadastrar Permissões</a>
+                        <a class="nav-link" href="/administrativo/permissoes/listar">Listar Permissões</a>
+                    </div>
+                </div>
+            </li>
 
-				<!-- Estados -->
-				<li class="nav-item">
-					<a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseEstado" aria-expanded="true" aria-controls="collapseProdutos">
-						<i class="oi oi-fw oi-basket"></i>
-						<span>Estados</span>
-					</a>
-					<div id="collapseEstado" class="collapse" aria-labelledby="headingProdutos" data-parent="#accordionSidebar">
-						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="nav-link" href="/administrativo/estados/cadastrar">Cadastrar Estados</a>
-							<a class="nav-link" href="/administrativo/estados/listar">Listar Estados</a>
-						</div>
-					</div>
-				</li>
+            <!-- Cidades -->
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseCidade" aria-expanded="true"
+                   aria-controls="collapseProdutos">
+                    <i class="oi oi-fw oi-badge"></i>
+                    <span>Cidades</span>
+                </a>
+                <div id="collapseCidade" class="collapse" aria-labelledby="headingProdutos"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="nav-link" href="/administrativo/cidades/cadastrar">Cadastrar Cidades</a>
+                        <a class="nav-link" href="/administrativo/cidades/listar">Listar Cidades</a>
+                    </div>
+                </div>
+            </li>
 
-			</nav>
-		</aside>
+            <!-- Estados -->
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseEstado" aria-expanded="true"
+                   aria-controls="collapseProdutos">
+                    <i class="oi oi-fw oi-basket"></i>
+                    <span>Estados</span>
+                </a>
+                <div id="collapseEstado" class="collapse" aria-labelledby="headingProdutos"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="nav-link" href="/administrativo/estados/cadastrar">Cadastrar Estados</a>
+                        <a class="nav-link" href="/administrativo/estados/listar">Listar Estados</a>
+                    </div>
+                </div>
+            </li>
 
-		<section class="layout-content" layout:fragment="corpo">
-			Principal</section>
+        </nav>
+    </aside>
 
-	</div>
-	<footer class="layout-footer">
-		<div class="container">
-			<span class="footer-copy">&copy; 2021 MBallem. Todos os direitos reservados.</span>
-		</div>
-	</footer>
+    <section class="layout-content" layout:fragment="corpo">
+        Principal
+    </section>
 
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="/webjars/jquery/jquery.min.js"></script>
-	<script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-		$(function() {
-			$('[data-toggle="popover"]').popover();
-		});
+</div>
+<footer class="layout-footer">
+    <div class="container">
+        <span class="footer-copy">&copy; 2021 MBallem. Todos os direitos reservados.</span>
+    </div>
+</footer>
 
-		$(document).ready(function() {
-			$(".navbar-toggle").click(function() {
-				$(".sidebar").toggleClass("sidebar-open");
-			})
-		});
-	</script>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="popover"]').popover();
+    });
+
+    $(document).ready(function () {
+        $(".navbar-toggle").click(function () {
+            $(".sidebar").toggleClass("sidebar-open");
+        })
+    });
+</script>
 </body>
 </html>
