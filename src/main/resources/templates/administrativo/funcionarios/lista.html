@@ -133,11 +133,10 @@
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="Fechar">
-													<span aria-hidden="true">×</span>
-												</button>
 												<h5 class="modal-title">Remover Funcionario</h5>
+												<button type="button" class="btn btn-danger oi oi-fw oi-x" data-dismiss="modal" aria-label="Close">
+												</button>
+
 											</div>
 											<div class="modal-body">
 												<h3>Deseja Realmente Remover o Funcionario?</h3>
@@ -147,7 +146,7 @@
 													data-dismiss="modal">Fechar</button>
 												<a type="button" class="btn btn-outline"
 													th:href="@{/administrativo/funcionarios/remover/{id}(id=${funcionario.id})}"><i
-													class="fa fa-check"></i>&nbsp;Sim</a>
+													class="oi oi-fw oi-check"></i>&nbsp;Sim</a>
 											</div>
 										</div>
 									</div>

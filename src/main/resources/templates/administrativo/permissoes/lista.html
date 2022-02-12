@@ -57,22 +57,21 @@
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title">Remover Permissão</h5>
-										<button type="button" class="close" data-dismiss="modal"
+										<h5 class="modal-title">Remover Permissao</h5>
+										<button type="button" class="btn btn-danger oi oi-fw oi-x" data-dismiss="modal"
 												aria-label="Close">
-											<span aria-hidden="true">×</span>
 										</button>
 
 									</div>
 									<div class="modal-body">
-										<h3>Deseja realmente remover a Permissão?</h3>
+										<h3>Deseja realmente remover a Permissao?</h3>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-outline pull-left"
 												data-dismiss="modal">Fechar</button>
 										<a type="button" class="btn btn-outline"
 										   th:href="@{/administrativo/permissoes/remover/{id}(id=${permissao.id})}"><i
-												class="fa fa-check"></i>&nbsp;Sim</a>
+												class="oi oi-fw oi-check"></i>&nbsp;Sim</a>
 									</div>
 								</div>
 							</div>

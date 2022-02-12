@@ -54,9 +54,7 @@
 										<div class="modal-content">
 											<div class="modal-header">
 												<h5 class="modal-title">Remover Categoria</h5>
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="Close">
-													<span aria-hidden="true">×</span>
+												<button type="button" class="btn btn-danger oi oi-fw oi-x" data-dismiss="modal" aria-label="Close">
 												</button>
 
 											</div>
@@ -64,11 +62,11 @@
 												<h3>Deseja realmente remover esta categoria?</h3>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-outline pull-left"
-													data-dismiss="modal">Fechar</button>
+												<button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Fechar</button>
 												<a type="button" class="btn btn-outline"
-													th:href="@{/administrativo/categorias/remover/{id}(id=${categoria.id})}"><i
-													class="fa fa-check"></i>&nbsp;Sim</a>
+													th:href="@{/administrativo/categorias/remover/{id}(id=${categoria.id})}">
+													<i class="oi oi-fw oi-check"></i>&nbsp;Sim
+												</a>
 											</div>
 										</div>
 									</div>
