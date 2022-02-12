@@ -28,6 +28,9 @@ public class PrincipalController {
     @Autowired
     private CompraRepository compraRepository;
 
+    @Autowired
+    private PapelRepository papelRepository;
+
     @GetMapping("/administrativo")
     public ModelAndView acessarPrincipal() {
         ModelAndView mv = new ModelAndView("administrativo/home");
@@ -36,6 +39,7 @@ public class PrincipalController {
         mv.addObject("totalMarcas", marcaRepository.count());
         mv.addObject("totalCategorias", categoriaRepository.count());
         mv.addObject("totalFuncionarios", funcionarioRepository.count());
+        mv.addObject("totalPapeis", papelRepository.count());
         mv.addObject("totalCompras", compraRepository.count());
         mv.addObject("totalCompraVendidas", totalCompraVendidas());
         return mv;
