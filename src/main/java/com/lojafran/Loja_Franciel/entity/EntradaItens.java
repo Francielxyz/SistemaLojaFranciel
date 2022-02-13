@@ -21,7 +21,7 @@ public class EntradaItens implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Double quantidade = 0.0;
+    private Integer quantidade = 0;
 
     private Double valorProduto = 0.0;
 

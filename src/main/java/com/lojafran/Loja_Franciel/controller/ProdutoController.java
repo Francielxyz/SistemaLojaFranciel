@@ -168,7 +168,7 @@ public class ProdutoController {
             Produto produto = new Produto();
             produto.setDescricao("Computador muito bom");
             produto.setValorVenda(10.0);
-            produto.setQuantidadeEstoque(5.0);
+            produto.setQuantidadeEstoque(5);
             produto.setMarca(null);
             produto.setCategoria(null);
 

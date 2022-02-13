@@ -27,7 +27,7 @@ public class Produto implements Serializable {
 
     private Double valorVenda;
 
-    private Double quantidadeEstoque = 0.0;
+    private Integer quantidadeEstoque = 0;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "produto")
     private List<Imagem> imagens = new ArrayList<>();
